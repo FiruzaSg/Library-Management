@@ -17,6 +17,7 @@ namespace LibrarySystem.Forms
     public partial class UserForm : Form
     {
         private readonly LibraryDbContext _context;
+        private User _selectedUser;
         public UserForm()
         {
             _context = new LibraryDbContext();
@@ -36,15 +37,105 @@ namespace LibrarySystem.Forms
                 DgvAllUsers.Rows.Add(item.Id,
                                      item.Fullname,
                                      item.Email,
+                                     item.Phone,
+                                     item.Status?"Active" : "Passive",
                                      item.Password
+                                     
                                      );
 
             }
+        }
+
+        private void ClearUsers()
+        {
+            DgvAllUsers.Rows.Clear();
         }
         private void BtnNewUser_Click(object sender, EventArgs e)
         {
             NewUserForm newUserForm = new NewUserForm();
             newUserForm.ShowDialog();
+        }
+
+        private void DgvAllUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(DgvAllUsers.Rows[e.RowIndex].Cells[0].Value.ToString());
+            _selectedUser = _context.Users.Find(id);
+
+            TxbEditFullname.Text = _selectedUser.Fullname;
+            TxbUserEmail.Text = _selectedUser.Email;
+            TxbUserPhone.Text = _selectedUser.Phone;
+            TxbUserPassword.Text = _selectedUser.Password;
+
+            //if (_selectedUser.Status == true)
+            //{
+            //    RbnActive.Checked;
+            //}
+            //RbnPassive.Checked = false;
+
+
+
+
+
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult r = MessageBox.Show("Are you sure?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (r == DialogResult.Yes)
+            {
+                _context.Users.Remove(_selectedUser);
+               
+                _context.SaveChanges();
+                ClearUsers();
+                FillUsers();
+
+            }
+            else if (r == DialogResult.No)
+            {
+                return;
+            }
+           
+        }
+
+        private void BtnEditBook_Click(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(TxbEditFullname.Text) || 
+                string.IsNullOrEmpty(TxbUserEmail.Text)||
+                string.IsNullOrEmpty(TxbUserPassword.Text) ||
+                string.IsNullOrEmpty(TxbUserPhone.Text))
+            {
+                MessageBox.Show("Please fill the rows", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DialogResult r = MessageBox.Show("Are you sure?", "User editing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (r == DialogResult.Yes)
+            {
+                _selectedUser.Fullname = TxbEditFullname.Text;
+                _selectedUser.Email = TxbUserEmail.Text;
+                _selectedUser.Phone = TxbUserPhone.Text;
+                _selectedUser.Password = TxbUserPassword.Text;
+
+                if (RbnActive.Checked)
+                {
+                    _selectedUser.Status = true;
+                }
+                else
+                {
+                    _selectedUser.Status = false;
+                }
+                _context.SaveChanges();
+                ClearUsers();
+                FillUsers();
+
+            }
+            if (r == DialogResult.No)
+            {
+                return;
+            }
+            
         }
     }
 }

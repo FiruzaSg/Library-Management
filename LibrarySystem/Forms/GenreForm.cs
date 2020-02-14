@@ -57,7 +57,7 @@ namespace LibrarySystem.Forms
         }
         private void DgvAllGenres_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            PnlDeleteEdit.Visible = true;
+            
 
             int id = Convert.ToInt32(DgvAllGenres.Rows[e.RowIndex].Cells[0].Value.ToString());
 
@@ -80,7 +80,7 @@ namespace LibrarySystem.Forms
                 _context.SaveChanges();
                 ClearGenres();
                 FillGenres();
-                PnlDeleteEdit.Visible = false;
+                
             }
             else if (r == DialogResult.No)
             {
@@ -89,19 +89,23 @@ namespace LibrarySystem.Forms
 
         }
 
-     
-        
-      
-
-       
 
         private void BtnEditGenre_Click(object sender, EventArgs e)
         {
+            
             DialogResult r = MessageBox.Show("Are you sure?","Update",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 
-            if(r == DialogResult.Yes)
+            
+            if (r == DialogResult.Yes)
             {
-                var editingGenre = _selectedGenre;
+                _selectedGenre.Name = TxbEditGenre.Text;
+                 
+                _context.SaveChanges();
+                ClearGenres();
+                FillGenres();
+                
+
+
 
             }
             if (r == DialogResult.No)

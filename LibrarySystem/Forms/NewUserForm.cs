@@ -20,10 +20,7 @@ namespace LibrarySystem.Forms
             InitializeComponent();
         }
 
-        private void NewUserForm_Load(object sender, EventArgs e)
-        {
-            
-        }
+     
 
         private void BtnNewUser_Click(object sender, EventArgs e)
         {
@@ -38,7 +35,9 @@ namespace LibrarySystem.Forms
             {
                 Fullname = TxbFullname.Text,
                 Email = TxbEmail.Text,
-                Password = TxbPassword.Text
+                Password = TxbPassword.Text,
+                Phone = TxbPhone.Text,
+                Status = true
             };
 
             _context.Users.Add(user);
@@ -47,5 +46,7 @@ namespace LibrarySystem.Forms
             this.Close();
             
         }
+
+    
     }
 }

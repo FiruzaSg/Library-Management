@@ -17,7 +17,7 @@ namespace LibrarySystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BooksForm());
+            Application.Run(new Dashboard());
         }
 
     }

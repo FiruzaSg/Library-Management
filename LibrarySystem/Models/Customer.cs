@@ -28,10 +28,13 @@ namespace LibrarySystem.Models
         public string Address { get; set; }
 
         [Required]
+        [MaxLength(50)]
+        public string IdentityCardNo { get; set; }
+
+        [Required]
         public int UserId { get; set; }
 
         public User User { get; set; }
-
 
     }
 }

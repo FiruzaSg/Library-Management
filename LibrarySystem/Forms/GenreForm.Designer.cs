@@ -62,7 +62,7 @@
             this.Column2});
             this.DgvAllGenres.Location = new System.Drawing.Point(46, 74);
             this.DgvAllGenres.Name = "DgvAllGenres";
-            this.DgvAllGenres.Size = new System.Drawing.Size(190, 283);
+            this.DgvAllGenres.Size = new System.Drawing.Size(191, 364);
             this.DgvAllGenres.TabIndex = 1;
             this.DgvAllGenres.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAllGenres_CellClick);
             // 
@@ -125,9 +125,8 @@
             this.PnlDeleteEdit.Controls.Add(this.BtnEditGenre);
             this.PnlDeleteEdit.Location = new System.Drawing.Point(243, 126);
             this.PnlDeleteEdit.Name = "PnlDeleteEdit";
-            this.PnlDeleteEdit.Size = new System.Drawing.Size(339, 212);
+            this.PnlDeleteEdit.Size = new System.Drawing.Size(336, 111);
             this.PnlDeleteEdit.TabIndex = 7;
-            this.PnlDeleteEdit.Visible = false;
             // 
             // TxbEditGenre
             // 

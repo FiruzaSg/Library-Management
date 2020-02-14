@@ -53,11 +53,22 @@ namespace LibrarySystem.Forms
         //Create New Author
         private void BtnNewAuthor_Click(object sender, EventArgs e)
         {
-            PnlDeleteEdit.Visible = false;
+          
             NewAuthorForm newAuthorForm = new NewAuthorForm();
             newAuthorForm.ShowDialog();
         }
 
+
+        private void DgvAllAuthors_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            int id = Convert.ToInt32(DgvAllAuthors.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+            _selectedAuthor = _context.Authors.Find(id);
+
+            TxbAuthorEdit.Text = _selectedAuthor.Fullname;
+
+        }
         //Delete Author
         private void BtnDeleteAuthor_Click(object sender, EventArgs e)
         {
@@ -78,23 +89,34 @@ namespace LibrarySystem.Forms
 
             ClearAuthors();
             FillAuthors();
-            PnlDeleteEdit.Visible = false;
+            
         }
 
 
-        private void DgvAllAuthors_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void BtnEditAuthor_Click(object sender, EventArgs e)
         {
-            PnlDeleteEdit.Visible = true;
-           
-            int id = Convert.ToInt32(DgvAllAuthors.Rows[e.RowIndex].Cells[0].Value.ToString());
+            DialogResult r = MessageBox.Show("Are you sure?", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            _selectedAuthor = _context.Authors.Find(id);
+            if(r == DialogResult.Yes)
+            {
 
+                _selectedAuthor.Fullname = TxbAuthorEdit.Text;
+
+                
+
+                _context.SaveChanges();
+                ClearAuthors();
+                FillAuthors();
+
+            }
+            if(r == DialogResult.No)
+            {
+                return;
+            }
         }
 
 
-
-
+        //List<Author> authors = _context.Authors.Where(g => g.Fullname.Contains("Firuza"));
 
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
@@ -102,6 +124,5 @@ namespace LibrarySystem.Forms
             FillAuthors();
         }
 
-      
     }
 }

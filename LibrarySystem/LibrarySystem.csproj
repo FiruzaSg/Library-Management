@@ -115,6 +115,12 @@
     <Compile Include="Forms\NewGenreForm.Designer.cs">
       <DependentUpon>NewGenreForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NewOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewOrderForm.Designer.cs">
+      <DependentUpon>NewOrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NewUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,11 +137,20 @@
     <Compile Include="Migrations\202002101525263_BookGenreCustomerUserCreated.designer.cs">
       <DependentUpon>202002101525263_BookGenreCustomerUserCreated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002132115595_OrderAndDataannotationsUpdated.cs" />
+    <Compile Include="Migrations\202002132115595_OrderAndDataannotationsUpdated.designer.cs">
+      <DependentUpon>202002132115595_OrderAndDataannotationsUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002141322115_OrderModelCreated.cs" />
+    <Compile Include="Migrations\202002141322115_OrderModelCreated.designer.cs">
+      <DependentUpon>202002141322115_OrderModelCreated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +178,9 @@
     <EmbeddedResource Include="Forms\NewGenreForm.resx">
       <DependentUpon>NewGenreForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewOrderForm.resx">
+      <DependentUpon>NewOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewUserForm.resx">
       <DependentUpon>NewUserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +189,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002101525263_BookGenreCustomerUserCreated.resx">
       <DependentUpon>202002101525263_BookGenreCustomerUserCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002132115595_OrderAndDataannotationsUpdated.resx">
+      <DependentUpon>202002132115595_OrderAndDataannotationsUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002141322115_OrderModelCreated.resx">
+      <DependentUpon>202002141322115_OrderModelCreated.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

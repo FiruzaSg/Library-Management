@@ -15,8 +15,10 @@ namespace LibrarySystem.Forms
     public partial class AddBookForm : Form
     {
         private readonly LibraryDbContext _context;
+       
         public AddBookForm()
         {
+            
             _context = new LibraryDbContext();
             InitializeComponent();
             FillComboboxes();
@@ -37,14 +39,10 @@ namespace LibrarySystem.Forms
             }
             if (CmbGenre.SelectedItem == null)
             {
-                MessageBox.Show("Please fill the rows", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
                 return;
             }
 
-            if (string.IsNullOrEmpty(TxbBookTitle.Text) || CmbAuthor.SelectedItem == null || CmbGenre.SelectedItem == null)
-            {
-                return;
-            }
 
             ComboboxItem selectedAuthor = CmbAuthor.SelectedItem as ComboboxItem;
             ComboboxItem selectedGenre = CmbGenre.SelectedItem as ComboboxItem;
@@ -52,7 +50,13 @@ namespace LibrarySystem.Forms
             {
                 Name = TxbBookTitle.Text,
                 AuthorId = selectedAuthor.Value,
-                GenreId = selectedGenre.Value
+                GenreId = selectedGenre.Value,
+                PublishedDate = Convert.ToDateTime(DtpPublish.Text),
+                Price = Convert.ToDecimal(TxbBookPrice.Text),
+                Count = Convert.ToInt32(NupBookCount.Value)
+                
+
+
             };
 
             _context.Books.Add(book);
@@ -111,12 +115,6 @@ namespace LibrarySystem.Forms
          
             newAuthorForm.ShowDialog();
 
-
-        }
-
-        
-        private void AddBookForm_Load(object sender, EventArgs e)
-        {
 
         }
     }

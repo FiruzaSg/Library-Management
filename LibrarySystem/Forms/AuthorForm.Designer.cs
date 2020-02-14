@@ -35,8 +35,9 @@
             this.BtnNewAuthor = new System.Windows.Forms.Button();
             this.BtnDeleteAuthor = new System.Windows.Forms.Button();
             this.BtnRefresh = new System.Windows.Forms.Button();
-            this.BtnUpdateAuthor = new System.Windows.Forms.Button();
+            this.BtnEditAuthor = new System.Windows.Forms.Button();
             this.PnlDeleteEdit = new System.Windows.Forms.Panel();
+            this.TxbAuthorEdit = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllAuthors)).BeginInit();
             this.PnlDeleteEdit.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +51,7 @@
             this.Column2});
             this.DgvAllAuthors.Location = new System.Drawing.Point(26, 62);
             this.DgvAllAuthors.Name = "DgvAllAuthors";
-            this.DgvAllAuthors.Size = new System.Drawing.Size(166, 287);
+            this.DgvAllAuthors.Size = new System.Drawing.Size(193, 376);
             this.DgvAllAuthors.TabIndex = 0;
             this.DgvAllAuthors.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAllAuthors_CellClick);
             // 
@@ -76,7 +77,7 @@
             // BtnNewAuthor
             // 
             this.BtnNewAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNewAuthor.Location = new System.Drawing.Point(359, 62);
+            this.BtnNewAuthor.Location = new System.Drawing.Point(386, 62);
             this.BtnNewAuthor.Name = "BtnNewAuthor";
             this.BtnNewAuthor.Size = new System.Drawing.Size(148, 45);
             this.BtnNewAuthor.TabIndex = 2;
@@ -87,9 +88,9 @@
             // BtnDeleteAuthor
             // 
             this.BtnDeleteAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnDeleteAuthor.Location = new System.Drawing.Point(25, 10);
+            this.BtnDeleteAuthor.Location = new System.Drawing.Point(161, 13);
             this.BtnDeleteAuthor.Name = "BtnDeleteAuthor";
-            this.BtnDeleteAuthor.Size = new System.Drawing.Size(148, 45);
+            this.BtnDeleteAuthor.Size = new System.Drawing.Size(148, 28);
             this.BtnDeleteAuthor.TabIndex = 3;
             this.BtnDeleteAuthor.Text = "Delete";
             this.BtnDeleteAuthor.UseVisualStyleBackColor = true;
@@ -98,7 +99,7 @@
             // BtnRefresh
             // 
             this.BtnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.BtnRefresh.Location = new System.Drawing.Point(198, 62);
+            this.BtnRefresh.Location = new System.Drawing.Point(225, 62);
             this.BtnRefresh.Name = "BtnRefresh";
             this.BtnRefresh.Size = new System.Drawing.Size(53, 20);
             this.BtnRefresh.TabIndex = 4;
@@ -106,31 +107,39 @@
             this.BtnRefresh.UseVisualStyleBackColor = true;
             this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
-            // BtnUpdateAuthor
+            // BtnEditAuthor
             // 
-            this.BtnUpdateAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnUpdateAuthor.Location = new System.Drawing.Point(25, 75);
-            this.BtnUpdateAuthor.Name = "BtnUpdateAuthor";
-            this.BtnUpdateAuthor.Size = new System.Drawing.Size(148, 45);
-            this.BtnUpdateAuthor.TabIndex = 5;
-            this.BtnUpdateAuthor.Text = "Update";
-            this.BtnUpdateAuthor.UseVisualStyleBackColor = true;
+            this.BtnEditAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEditAuthor.Location = new System.Drawing.Point(161, 56);
+            this.BtnEditAuthor.Name = "BtnEditAuthor";
+            this.BtnEditAuthor.Size = new System.Drawing.Size(148, 29);
+            this.BtnEditAuthor.TabIndex = 5;
+            this.BtnEditAuthor.Text = "Edit";
+            this.BtnEditAuthor.UseVisualStyleBackColor = true;
+            this.BtnEditAuthor.Click += new System.EventHandler(this.BtnEditAuthor_Click);
             // 
             // PnlDeleteEdit
             // 
+            this.PnlDeleteEdit.Controls.Add(this.TxbAuthorEdit);
             this.PnlDeleteEdit.Controls.Add(this.BtnDeleteAuthor);
-            this.PnlDeleteEdit.Controls.Add(this.BtnUpdateAuthor);
-            this.PnlDeleteEdit.Location = new System.Drawing.Point(334, 113);
+            this.PnlDeleteEdit.Controls.Add(this.BtnEditAuthor);
+            this.PnlDeleteEdit.Location = new System.Drawing.Point(225, 113);
             this.PnlDeleteEdit.Name = "PnlDeleteEdit";
-            this.PnlDeleteEdit.Size = new System.Drawing.Size(204, 142);
+            this.PnlDeleteEdit.Size = new System.Drawing.Size(334, 112);
             this.PnlDeleteEdit.TabIndex = 6;
-            this.PnlDeleteEdit.Visible = false;
+            // 
+            // TxbAuthorEdit
+            // 
+            this.TxbAuthorEdit.Location = new System.Drawing.Point(13, 63);
+            this.TxbAuthorEdit.Name = "TxbAuthorEdit";
+            this.TxbAuthorEdit.Size = new System.Drawing.Size(142, 20);
+            this.TxbAuthorEdit.TabIndex = 6;
             // 
             // AuthorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(788, 409);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.PnlDeleteEdit);
             this.Controls.Add(this.BtnRefresh);
             this.Controls.Add(this.BtnNewAuthor);
@@ -141,6 +150,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllAuthors)).EndInit();
             this.PnlDeleteEdit.ResumeLayout(false);
+            this.PnlDeleteEdit.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,7 +165,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Button BtnRefresh;
-        private System.Windows.Forms.Button BtnUpdateAuthor;
+        private System.Windows.Forms.Button BtnEditAuthor;
         private System.Windows.Forms.Panel PnlDeleteEdit;
+        private System.Windows.Forms.TextBox TxbAuthorEdit;
     }
 }
