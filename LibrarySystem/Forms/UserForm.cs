@@ -25,6 +25,7 @@ namespace LibrarySystem.Forms
 
             InitializeComponent();
             FillUsers();
+            
         }
 
 
@@ -52,8 +53,8 @@ namespace LibrarySystem.Forms
         }
         private void BtnNewUser_Click(object sender, EventArgs e)
         {
-            NewUserForm newUserForm = new NewUserForm();
-            newUserForm.ShowDialog();
+            PnlDeleteEdit.Visible = false;
+            PnlCreateUser.Visible = true;
         }
 
         private void DgvAllUsers_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -66,15 +67,8 @@ namespace LibrarySystem.Forms
             TxbUserPhone.Text = _selectedUser.Phone;
             TxbUserPassword.Text = _selectedUser.Password;
 
-            //if (_selectedUser.Status == true)
-            //{
-            //    RbnActive.Checked;
-            //}
-            //RbnPassive.Checked = false;
-
-
-
-
+            PnlDeleteEdit.Visible = true;
+            PnlCreateUser.Visible = false;
 
         }
 
@@ -135,6 +129,38 @@ namespace LibrarySystem.Forms
             {
                 return;
             }
+            
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            PnlCreateUser.Visible = false;
+            PnlDeleteEdit.Visible = true;
+        }
+
+        private void BtnCreateUser_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TxbFullname.Text) || string.IsNullOrEmpty(TxbEmail.Text) || string.IsNullOrEmpty(TxbPassword.Text))
+            {
+                MessageBox.Show("Please fill the rows", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            User user = new User
+            {
+                Fullname = TxbFullname.Text,
+                Email = TxbEmail.Text,
+                Password = TxbPassword.Text,
+                Phone = TxbPhone.Text,
+                Status = true
+            };
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            ClearUsers();
+            FillUsers();
+            PnlCreateUser.Visible = false;
+            PnlDeleteEdit.Visible = true;
+            
             
         }
     }

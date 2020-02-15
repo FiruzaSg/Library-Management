@@ -20,6 +20,7 @@ namespace LibrarySystem.Forms
         {
             _context = new LibraryDbContext();
             InitializeComponent();
+            PnlNewAuthor.Visible = false;
             FillAuthors();
 
         }
@@ -53,26 +54,37 @@ namespace LibrarySystem.Forms
         //Create New Author
         private void BtnNewAuthor_Click(object sender, EventArgs e)
         {
-          
-            NewAuthorForm newAuthorForm = new NewAuthorForm();
-            newAuthorForm.ShowDialog();
+            PnlNewAuthor.Visible = true;
         }
 
 
         private void DgvAllAuthors_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            //if(_selectedAuthor == null)
+            //{
+            //        MessageBox.Show("Please select author", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return;
+                
+            //}
             int id = Convert.ToInt32(DgvAllAuthors.Rows[e.RowIndex].Cells[0].Value.ToString());
 
             _selectedAuthor = _context.Authors.Find(id);
 
             TxbAuthorEdit.Text = _selectedAuthor.Fullname;
 
+            PnlDeleteEdit.Visible = true;
+            PnlNewAuthor.Visible = false;
+
         }
         //Delete Author
         private void BtnDeleteAuthor_Click(object sender, EventArgs e)
         {
-           
+            if (_selectedAuthor == null)
+            {
+                MessageBox.Show("Please select author", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             DialogResult r = MessageBox.Show("Are you sure?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (r == DialogResult.Yes)
@@ -89,19 +101,30 @@ namespace LibrarySystem.Forms
 
             ClearAuthors();
             FillAuthors();
+            TxbAuthorEdit.Clear();
             
         }
 
 
         private void BtnEditAuthor_Click(object sender, EventArgs e)
         {
+            if (_selectedAuthor == null)
+            {
+                MessageBox.Show("Please select author", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(TxbAuthorEdit.Text))
+            {
+                LblErr.Visible = true;
+                return;
+            }
+            LblErr.Visible = false;
             DialogResult r = MessageBox.Show("Are you sure?", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if(r == DialogResult.Yes)
+            
+            if (r == DialogResult.Yes)
             {
 
                 _selectedAuthor.Fullname = TxbAuthorEdit.Text;
-
                 
 
                 _context.SaveChanges();
@@ -109,20 +132,41 @@ namespace LibrarySystem.Forms
                 FillAuthors();
 
             }
-            if(r == DialogResult.No)
+            if (r == DialogResult.No)
             {
                 return;
             }
+            TxbAuthorEdit.Clear();
+
+
         }
 
 
         //List<Author> authors = _context.Authors.Where(g => g.Fullname.Contains("Firuza"));
 
-        private void BtnRefresh_Click(object sender, EventArgs e)
+
+        private void BtnCreateAuthor_Click(object sender, EventArgs e)
         {
+            
+            if (string.IsNullOrEmpty(TxbNewAuthor.Text))
+            {
+                LblErr1.Visible = true;
+                return;
+            }
+            LblErr1.Visible = false;
+
+            Author author = new Author
+            {
+                Fullname = TxbNewAuthor.Text
+            };
+
+
+            _context.Authors.Add(author);
+            _context.SaveChanges();
+            PnlNewAuthor.Visible = false;
             ClearAuthors();
             FillAuthors();
+            TxbNewAuthor.Clear();
         }
-
     }
 }

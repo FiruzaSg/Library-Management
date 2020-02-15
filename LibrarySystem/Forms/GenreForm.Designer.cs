@@ -35,11 +35,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnDeleteGenre = new System.Windows.Forms.Button();
             this.BtnEditGenre = new System.Windows.Forms.Button();
-            this.BtnRefresh = new System.Windows.Forms.Button();
             this.PnlDeleteEdit = new System.Windows.Forms.Panel();
+            this.LblErr = new System.Windows.Forms.Label();
             this.TxbEditGenre = new System.Windows.Forms.TextBox();
+            this.PnlNewGenre = new System.Windows.Forms.Panel();
+            this.BtnSubmit = new System.Windows.Forms.Button();
+            this.TxbNewGenre = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.LblErr1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllGenres)).BeginInit();
             this.PnlDeleteEdit.SuspendLayout();
+            this.PnlNewGenre.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnNewGenre
@@ -108,25 +114,27 @@
             this.BtnEditGenre.UseVisualStyleBackColor = true;
             this.BtnEditGenre.Click += new System.EventHandler(this.BtnEditGenre_Click);
             // 
-            // BtnRefresh
-            // 
-            this.BtnRefresh.Location = new System.Drawing.Point(243, 74);
-            this.BtnRefresh.Name = "BtnRefresh";
-            this.BtnRefresh.Size = new System.Drawing.Size(54, 19);
-            this.BtnRefresh.TabIndex = 6;
-            this.BtnRefresh.Text = "Refresh";
-            this.BtnRefresh.UseVisualStyleBackColor = true;
-            this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
-            // 
             // PnlDeleteEdit
             // 
+            this.PnlDeleteEdit.Controls.Add(this.LblErr);
             this.PnlDeleteEdit.Controls.Add(this.TxbEditGenre);
             this.PnlDeleteEdit.Controls.Add(this.BtnDeleteGenre);
             this.PnlDeleteEdit.Controls.Add(this.BtnEditGenre);
-            this.PnlDeleteEdit.Location = new System.Drawing.Point(243, 126);
+            this.PnlDeleteEdit.Location = new System.Drawing.Point(243, 140);
             this.PnlDeleteEdit.Name = "PnlDeleteEdit";
             this.PnlDeleteEdit.Size = new System.Drawing.Size(336, 111);
             this.PnlDeleteEdit.TabIndex = 7;
+            // 
+            // LblErr
+            // 
+            this.LblErr.AutoSize = true;
+            this.LblErr.ForeColor = System.Drawing.Color.Red;
+            this.LblErr.Location = new System.Drawing.Point(30, 87);
+            this.LblErr.Name = "LblErr";
+            this.LblErr.Size = new System.Drawing.Size(96, 13);
+            this.LblErr.TabIndex = 8;
+            this.LblErr.Text = "* Please fill the row";
+            this.LblErr.Visible = false;
             // 
             // TxbEditGenre
             // 
@@ -135,13 +143,63 @@
             this.TxbEditGenre.Size = new System.Drawing.Size(142, 20);
             this.TxbEditGenre.TabIndex = 5;
             // 
+            // PnlNewGenre
+            // 
+            this.PnlNewGenre.Controls.Add(this.LblErr1);
+            this.PnlNewGenre.Controls.Add(this.BtnSubmit);
+            this.PnlNewGenre.Controls.Add(this.TxbNewGenre);
+            this.PnlNewGenre.Controls.Add(this.label2);
+            this.PnlNewGenre.Location = new System.Drawing.Point(585, 74);
+            this.PnlNewGenre.Name = "PnlNewGenre";
+            this.PnlNewGenre.Size = new System.Drawing.Size(170, 128);
+            this.PnlNewGenre.TabIndex = 8;
+            // 
+            // BtnSubmit
+            // 
+            this.BtnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSubmit.Location = new System.Drawing.Point(16, 78);
+            this.BtnSubmit.Name = "BtnSubmit";
+            this.BtnSubmit.Size = new System.Drawing.Size(142, 32);
+            this.BtnSubmit.TabIndex = 6;
+            this.BtnSubmit.Text = "Add";
+            this.BtnSubmit.UseVisualStyleBackColor = true;
+            this.BtnSubmit.Click += new System.EventHandler(this.BtnSubmit_Click_1);
+            // 
+            // TxbNewGenre
+            // 
+            this.TxbNewGenre.Location = new System.Drawing.Point(16, 33);
+            this.TxbNewGenre.Name = "TxbNewGenre";
+            this.TxbNewGenre.Size = new System.Drawing.Size(142, 20);
+            this.TxbNewGenre.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(13, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 18);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "New Genre";
+            // 
+            // LblErr1
+            // 
+            this.LblErr1.AutoSize = true;
+            this.LblErr1.ForeColor = System.Drawing.Color.Red;
+            this.LblErr1.Location = new System.Drawing.Point(13, 56);
+            this.LblErr1.Name = "LblErr1";
+            this.LblErr1.Size = new System.Drawing.Size(96, 13);
+            this.LblErr1.TabIndex = 9;
+            this.LblErr1.Text = "* Please fill the row";
+            this.LblErr1.Visible = false;
+            // 
             // GenreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.PnlNewGenre);
             this.Controls.Add(this.PnlDeleteEdit);
-            this.Controls.Add(this.BtnRefresh);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DgvAllGenres);
             this.Controls.Add(this.BtnNewGenre);
@@ -151,6 +209,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllGenres)).EndInit();
             this.PnlDeleteEdit.ResumeLayout(false);
             this.PnlDeleteEdit.PerformLayout();
+            this.PnlNewGenre.ResumeLayout(false);
+            this.PnlNewGenre.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,8 +225,13 @@
         private System.Windows.Forms.Button BtnEditGenre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.Button BtnRefresh;
         private System.Windows.Forms.Panel PnlDeleteEdit;
         private System.Windows.Forms.TextBox TxbEditGenre;
+        private System.Windows.Forms.Panel PnlNewGenre;
+        private System.Windows.Forms.TextBox TxbNewGenre;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button BtnSubmit;
+        private System.Windows.Forms.Label LblErr;
+        private System.Windows.Forms.Label LblErr1;
     }
 }
