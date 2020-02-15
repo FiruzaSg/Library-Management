@@ -43,6 +43,7 @@
             this.PnlAllOrders = new System.Windows.Forms.Panel();
             this.PnlNewOrder = new System.Windows.Forms.Panel();
             this.PnlOrderInfo = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -151,6 +152,8 @@
             // 
             // DgvAllOrders
             // 
+            this.DgvAllOrders.AllowUserToAddRows = false;
+            this.DgvAllOrders.AllowUserToDeleteRows = false;
             this.DgvAllOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvAllOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvAllOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -238,6 +241,7 @@
             // PnlOrderInfo
             // 
             this.PnlOrderInfo.BackColor = System.Drawing.Color.Khaki;
+            this.PnlOrderInfo.Controls.Add(this.button1);
             this.PnlOrderInfo.Controls.Add(this.label13);
             this.PnlOrderInfo.Controls.Add(this.dataGridView1);
             this.PnlOrderInfo.Controls.Add(this.label12);
@@ -251,11 +255,23 @@
             this.PnlOrderInfo.TabIndex = 25;
             this.PnlOrderInfo.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gold;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(347, 210);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(162, 39);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(523, 152);
+            this.label13.Location = new System.Drawing.Point(515, 123);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 25);
             this.label13.TabIndex = 27;
@@ -300,11 +316,11 @@
             // 
             this.BtnCreateOrder.BackColor = System.Drawing.Color.LightGreen;
             this.BtnCreateOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCreateOrder.Location = new System.Drawing.Point(355, 196);
+            this.BtnCreateOrder.Location = new System.Drawing.Point(347, 165);
             this.BtnCreateOrder.Name = "BtnCreateOrder";
             this.BtnCreateOrder.Size = new System.Drawing.Size(162, 39);
             this.BtnCreateOrder.TabIndex = 22;
-            this.BtnCreateOrder.Text = "Submit order";
+            this.BtnCreateOrder.Text = "Submit";
             this.BtnCreateOrder.UseVisualStyleBackColor = false;
             this.BtnCreateOrder.Click += new System.EventHandler(this.BtnCreateOrder_Click);
             // 
@@ -322,8 +338,9 @@
             // RtbTotalPrice
             // 
             this.RtbTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RtbTotalPrice.Location = new System.Drawing.Point(355, 143);
+            this.RtbTotalPrice.Location = new System.Drawing.Point(347, 112);
             this.RtbTotalPrice.Name = "RtbTotalPrice";
+            this.RtbTotalPrice.ReadOnly = true;
             this.RtbTotalPrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RtbTotalPrice.Size = new System.Drawing.Size(162, 47);
             this.RtbTotalPrice.TabIndex = 24;
@@ -333,7 +350,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(266, 159);
+            this.label10.Location = new System.Drawing.Point(258, 128);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(83, 16);
             this.label10.TabIndex = 23;
@@ -364,6 +381,7 @@
             0,
             0});
             this.NupBookCount.Name = "NupBookCount";
+            this.NupBookCount.ReadOnly = true;
             this.NupBookCount.Size = new System.Drawing.Size(120, 20);
             this.NupBookCount.TabIndex = 20;
             this.NupBookCount.Value = new decimal(new int[] {
@@ -445,6 +463,8 @@
             // 
             // DgvBookSearch
             // 
+            this.DgvBookSearch.AllowUserToAddRows = false;
+            this.DgvBookSearch.AllowUserToDeleteRows = false;
             this.DgvBookSearch.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvBookSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvBookSearch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -454,9 +474,9 @@
             this.Column14,
             this.Column16,
             this.Column15});
-            this.DgvBookSearch.Location = new System.Drawing.Point(642, 107);
+            this.DgvBookSearch.Location = new System.Drawing.Point(694, 107);
             this.DgvBookSearch.Name = "DgvBookSearch";
-            this.DgvBookSearch.Size = new System.Drawing.Size(556, 153);
+            this.DgvBookSearch.Size = new System.Drawing.Size(579, 153);
             this.DgvBookSearch.TabIndex = 11;
             this.DgvBookSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvBookSearch_CellClick);
             // 
@@ -528,6 +548,9 @@
             // 
             // DgvCustomersSearch
             // 
+            this.DgvCustomersSearch.AllowUserToAddRows = false;
+            this.DgvCustomersSearch.AllowUserToDeleteRows = false;
+            this.DgvCustomersSearch.AllowUserToOrderColumns = true;
             this.DgvCustomersSearch.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvCustomersSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvCustomersSearch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -538,7 +561,7 @@
             this.Column11});
             this.DgvCustomersSearch.Location = new System.Drawing.Point(28, 107);
             this.DgvCustomersSearch.Name = "DgvCustomersSearch";
-            this.DgvCustomersSearch.Size = new System.Drawing.Size(556, 153);
+            this.DgvCustomersSearch.Size = new System.Drawing.Size(579, 153);
             this.DgvCustomersSearch.TabIndex = 6;
             this.DgvCustomersSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCustomersSearch_CellClick);
             // 
@@ -724,5 +747,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button BtnReturn;
+        private System.Windows.Forms.Button button1;
     }
 }

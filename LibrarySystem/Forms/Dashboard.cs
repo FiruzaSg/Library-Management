@@ -14,11 +14,11 @@ using LibrarySystem.Models;
 
 namespace LibrarySystem.Forms
 {
-    
+
 
     public partial class Dashboard : Form
     {
-        private readonly LibraryDbContext _context;
+        private LibraryDbContext _context;
         private Order _selectedOrder;
         private Customer _selectedCustomer;
         private Book _selectedBook;
@@ -26,13 +26,13 @@ namespace LibrarySystem.Forms
         {
             _context = new LibraryDbContext();
             InitializeComponent();
-           
+
             FillOrders();
             FillCustomersSearch();
             FillBooksSearch();
 
 
-    }
+        }
 
         #region Fill and Clear methods
         private void FillOrders()
@@ -46,14 +46,22 @@ namespace LibrarySystem.Forms
                                       item.Book.Name,
                                       item.BookCount,
                                       item.TakenAt,
-                                      item.Deadline, 
+                                      item.Deadline,
                                       item.FinePrice
                                      );
 
             }
         }
+
+        private void UpdateContext()
+        {
+            _context = new LibraryDbContext();
+        }
+
+
         private void FillCustomersSearch()
         {
+
             var Customers = _context.Customers.ToList();
 
             foreach (var item in Customers)
@@ -98,7 +106,7 @@ namespace LibrarySystem.Forms
             DgvAllOrders.Rows.Clear();
         }
 
-       
+
 
         #endregion
 
@@ -116,13 +124,24 @@ namespace LibrarySystem.Forms
 
             userForm.ShowDialog();
 
-            
+
         }
 
         private void DgvAllOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Convert.ToInt32(DgvAllOrders.Rows[e.RowIndex].Cells[0].Value.ToString());
-            _selectedOrder = _context.Orders.Find(id);
+            try
+            {
+                int id = Convert.ToInt32(DgvAllOrders.Rows[e.RowIndex].Cells[0].Value.ToString());
+                _selectedOrder = _context.Orders.Find(id);
+            }
+            catch (NullReferenceException error)
+            {
+                //pass
+            }
+            catch (ArgumentOutOfRangeException error)
+            {
+                // pass
+            }
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -146,10 +165,10 @@ namespace LibrarySystem.Forms
         private void BtnAddToCard_Click(object sender, EventArgs e)
         {
 
-            if(_selectedCustomer == null ||
+            if (_selectedCustomer == null ||
                 _selectedBook == null)
             {
-                MessageBox.Show("Please select customer and book","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Please select customer and book", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -161,28 +180,59 @@ namespace LibrarySystem.Forms
             RtbTotalPrice.Text = price.ToString();
             TxbCustomerSearch.Clear();
             TxbBookSearch.Clear();
-            
+            NupBookCount.Value = 1;
+
         }
 
 
         private void DgvCustomersSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Convert.ToInt32(DgvCustomersSearch.Rows[e.RowIndex].Cells[0].Value.ToString());
-            _selectedCustomer = _context.Customers.Find(id);
+            try
+            {
+                int id = Convert.ToInt32(DgvCustomersSearch.Rows[e.RowIndex].Cells[0].Value.ToString());
+                _selectedCustomer = _context.Customers.Find(id);
+            }
+            catch (NullReferenceException error)
+            {
+                // pass
+            }
+            catch (ArgumentOutOfRangeException error)
+            {
+                // pass
+            }
         }
         private void DgvBookSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Convert.ToInt32(DgvBookSearch.Rows[e.RowIndex].Cells[0].Value.ToString());
-            _selectedBook = _context.Books.Find(id);
+
+            try
+            {
+                int id = Convert.ToInt32(DgvBookSearch.Rows[e.RowIndex].Cells[0].Value.ToString());
+                _selectedBook = _context.Books.Find(id);
+            }
+            catch (NullReferenceException error)
+            {
+                // pass
+            }
+            catch (ArgumentOutOfRangeException error)
+            {
+
+                // pass
+            }
         }
+
 
         private void BtnCreateOrder_Click(object sender, EventArgs e)
         {
+            if (_selectedCustomer == null || _selectedBook == null)
+            {
+                MessageBox.Show("Please select customer and book", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             DialogResult r = MessageBox.Show("Are you sure?", "Order confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if(r == DialogResult.No)
+            if (r == DialogResult.No)
             {
                 return;
-                
+
             }
             Order order = new Order
             {
@@ -195,7 +245,7 @@ namespace LibrarySystem.Forms
 
             };
 
-           
+
             _context.Orders.Add(order);
             _selectedBook.Count -= Convert.ToInt32(NupBookCount.Value);
             _context.SaveChanges();
@@ -209,15 +259,22 @@ namespace LibrarySystem.Forms
 
         private void BtnCustomerSearch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TxbCustomerSearch.Text))
+            DgvCustomersSearch.Rows.Clear();
+            UpdateContext();
+            string searchText = TxbCustomerSearch.Text.Trim();
+            if (string.IsNullOrEmpty(searchText))
             {
-                MessageBox.Show("Please enter customer's name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                FillCustomersSearch();
                 return;
             }
 
-            var customers = _context.Customers.Where(c => TxbCustomerSearch.Text != string.Empty ? c.Name.StartsWith(TxbCustomerSearch.Text) : false).OrderBy(p => p.Name).ToList();
+            var customers = _context.Customers
+                .Where(c => searchText != string.Empty ? c.Name.StartsWith(searchText) : false)
+                .OrderBy(p => p.Name)
+                .ToList();
 
-            DgvCustomersSearch.Rows.Clear();
+
 
             foreach (var item in customers)
             {
@@ -228,19 +285,24 @@ namespace LibrarySystem.Forms
                                             item.Address
                                             );
             }
-           
-
+            TxbCustomerSearch.Clear();
         }
 
         private void BtnBookSearch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TxbBookSearch.Text))
+            DgvBookSearch.Rows.Clear();
+            UpdateContext();
+            string searchText = TxbBookSearch.Text.Trim();
+            if (string.IsNullOrEmpty(searchText))
             {
-                MessageBox.Show("Please enter book's title", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FillBooksSearch();
                 return;
             }
-            var books = _context.Books.Where(b => TxbBookSearch.Text != string.Empty ? b.Name.StartsWith(TxbBookSearch.Text) : false).OrderBy(b => b.Name).ToList();
-            DgvBookSearch.Rows.Clear();
+            var books = _context.Books
+                .Where(b => searchText != string.Empty ? b.Name.StartsWith(searchText) : false)
+                .OrderBy(b => b.Name)
+                .ToList();
+
             foreach (var item in books)
             {
                 DgvBookSearch.Rows.Add(item.Id,
@@ -250,8 +312,17 @@ namespace LibrarySystem.Forms
                                        item.Price,
                                        item.Count);
             }
+            TxbBookSearch.Clear();
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DgvCustomersSearch.ClearSelection();
+            DgvBookSearch.ClearSelection();
+            NupBookCount.Value = 1;
+            RtbTotalPrice.Clear();
+            PnlOrderInfo.Visible = false;
+        }
+
     }
 }
