@@ -84,7 +84,7 @@
             this.TxbOrderSearch = new System.Windows.Forms.TextBox();
             this.DgvAllOrders = new System.Windows.Forms.DataGridView();
             this.BtnReturn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LblAllOrders = new System.Windows.Forms.Label();
             this.BtnNewOrder = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.BtnAllReturns = new System.Windows.Forms.Button();
@@ -99,6 +99,9 @@
             this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LblReturn = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.BtnLateReturn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.PnlNewOrder.SuspendLayout();
             this.PnlOrderInfo.SuspendLayout();
@@ -167,11 +170,10 @@
             this.BtnAllOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAllOrders.Location = new System.Drawing.Point(12, 73);
             this.BtnAllOrders.Name = "BtnAllOrders";
-            this.BtnAllOrders.Size = new System.Drawing.Size(160, 38);
+            this.BtnAllOrders.Size = new System.Drawing.Size(185, 38);
             this.BtnAllOrders.TabIndex = 8;
-            this.BtnAllOrders.Text = "All orders";
+            this.BtnAllOrders.Text = "All active orders";
             this.BtnAllOrders.UseVisualStyleBackColor = false;
-            this.BtnAllOrders.Visible = false;
             this.BtnAllOrders.Click += new System.EventHandler(this.BtnAllOrders_Click);
             // 
             // PnlNewOrder
@@ -593,12 +595,13 @@
             // PnlAllOrders
             // 
             this.PnlAllOrders.BackColor = System.Drawing.Color.CadetBlue;
+            this.PnlAllOrders.Controls.Add(this.LblReturn);
             this.PnlAllOrders.Controls.Add(this.label14);
             this.PnlAllOrders.Controls.Add(this.BtnOrderSearch);
             this.PnlAllOrders.Controls.Add(this.TxbOrderSearch);
             this.PnlAllOrders.Controls.Add(this.DgvAllOrders);
             this.PnlAllOrders.Controls.Add(this.BtnReturn);
-            this.PnlAllOrders.Controls.Add(this.label1);
+            this.PnlAllOrders.Controls.Add(this.LblAllOrders);
             this.PnlAllOrders.Controls.Add(this.BtnNewOrder);
             this.PnlAllOrders.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PnlAllOrders.Location = new System.Drawing.Point(12, 122);
@@ -668,15 +671,15 @@
             this.BtnReturn.UseVisualStyleBackColor = false;
             this.BtnReturn.Click += new System.EventHandler(this.BtnReturn_Click);
             // 
-            // label1
+            // LblAllOrders
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 29);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "All orders";
+            this.LblAllOrders.AutoSize = true;
+            this.LblAllOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblAllOrders.Location = new System.Drawing.Point(22, 23);
+            this.LblAllOrders.Name = "LblAllOrders";
+            this.LblAllOrders.Size = new System.Drawing.Size(126, 29);
+            this.LblAllOrders.TabIndex = 4;
+            this.LblAllOrders.Text = "All orders";
             // 
             // BtnNewOrder
             // 
@@ -699,13 +702,13 @@
             // 
             this.BtnAllReturns.BackColor = System.Drawing.Color.CadetBlue;
             this.BtnAllReturns.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAllReturns.Location = new System.Drawing.Point(178, 73);
+            this.BtnAllReturns.Location = new System.Drawing.Point(203, 73);
             this.BtnAllReturns.Name = "BtnAllReturns";
             this.BtnAllReturns.Size = new System.Drawing.Size(160, 38);
             this.BtnAllReturns.TabIndex = 12;
             this.BtnAllReturns.Text = "All returns";
             this.BtnAllReturns.UseVisualStyleBackColor = false;
-            this.BtnAllReturns.Visible = false;
+            this.BtnAllReturns.Click += new System.EventHandler(this.BtnAllReturns_Click);
             // 
             // Column1
             // 
@@ -764,12 +767,36 @@
             this.Column25.Name = "Column25";
             this.Column25.Visible = false;
             // 
+            // LblReturn
+            // 
+            this.LblReturn.AutoSize = true;
+            this.LblReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblReturn.Location = new System.Drawing.Point(17, 23);
+            this.LblReturn.Name = "LblReturn";
+            this.LblReturn.Size = new System.Drawing.Size(131, 29);
+            this.LblReturn.TabIndex = 11;
+            this.LblReturn.Text = "All returns";
+            this.LblReturn.Visible = false;
+            // 
+            // BtnLateReturn
+            // 
+            this.BtnLateReturn.BackColor = System.Drawing.Color.CadetBlue;
+            this.BtnLateReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLateReturn.Location = new System.Drawing.Point(369, 73);
+            this.BtnLateReturn.Name = "BtnLateReturn";
+            this.BtnLateReturn.Size = new System.Drawing.Size(160, 38);
+            this.BtnLateReturn.TabIndex = 13;
+            this.BtnLateReturn.Text = "Late returns";
+            this.BtnLateReturn.UseVisualStyleBackColor = false;
+            this.BtnLateReturn.Click += new System.EventHandler(this.BtnLateReturn_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ClientSize = new System.Drawing.Size(1333, 745);
+            this.Controls.Add(this.BtnLateReturn);
             this.Controls.Add(this.BtnAllReturns);
             this.Controls.Add(this.PnlAllOrders);
             this.Controls.Add(this.PnlNewOrder);
@@ -856,7 +883,7 @@
         private System.Windows.Forms.TextBox TxbOrderSearch;
         private System.Windows.Forms.DataGridView DgvAllOrders;
         private System.Windows.Forms.Button BtnReturn;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LblAllOrders;
         private System.Windows.Forms.Button BtnNewOrder;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button BtnAllReturns;
@@ -871,5 +898,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column25;
+        private System.Windows.Forms.Label LblReturn;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button BtnLateReturn;
     }
 }

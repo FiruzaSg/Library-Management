@@ -28,15 +28,41 @@ namespace LibrarySystem.Forms
             _context = new LibraryDbContext();
             InitializeComponent();
 
-            FillOrders();
+            FillActiveOrders();
             FillCustomersSearch();
             FillBooksSearch();
         }
 
         #region Fill and Clear methods
-        private void FillOrders()
+
+        private void FillPassiveOrders()
         {
-            var Orders = _context.Orders.Include("Customer").Include("Book").ToList();
+            var Orders = _context.Orders.Include("Book").Include("Customer")
+                                               .Where(c => c.IsDone == false)
+                                               .ToList();
+
+            foreach (var item in Orders)
+            {
+                DgvAllOrders.Rows.Add(item.Id,
+                                      item.Customer.Name,
+                                      item.Customer.Surname,
+                                      item.Book.Name,
+                                      item.BookCount,
+                                      item.TakenAt,
+                                      item.Deadline,
+                                      item.Price,
+                                      item.FinePrice,
+                                      item.IsDone ? "Active" : "Passive",
+                                      item.BookId
+                                     );
+            }
+        }
+            
+        private void FillActiveOrders()
+        {
+            var Orders = _context.Orders.Include("Book").Include("Customer")
+                                                .Where(c => c.IsDone ==true)
+                                                .ToList();
             
             foreach (var item in Orders)
             {
@@ -54,6 +80,30 @@ namespace LibrarySystem.Forms
                                      ) ;
 
             }
+        }
+
+        private void FillLateOrders()
+        {
+            DateTime now = new DateTime();
+            //var Orders = _context.Orders.Include("Book").Include("Customer")
+            //                                  .Where(c => c.Deadline < )
+            //                                  .ToList();
+
+            //foreach (var item in Orders)
+            //{
+            //    DgvAllOrders.Rows.Add(item.Id,
+            //                          item.Customer.Name,
+            //                          item.Customer.Surname,
+            //                          item.Book.Name,
+            //                          item.BookCount,
+            //                          item.TakenAt,
+            //                          item.Deadline,
+            //                          item.Price,
+            //                          item.FinePrice,
+            //                          item.IsDone ? "Active" : "Passive",
+            //                          item.BookId
+            //                         );
+            //}
         }
         private void FillCustomersSearch()
         {
@@ -176,10 +226,15 @@ namespace LibrarySystem.Forms
 
         private void BtnAllOrders_Click(object sender, EventArgs e)
         {
+            DgvAllOrders.Rows.Clear();
+            FillActiveOrders();
             PnlAllOrders.Visible = true;
             PnlNewOrder.Visible = false;
             BtnNewOrder.Visible = true;
-            BtnAllOrders.Visible = false;
+            BtnReturn.Visible = true;
+            LblAllOrders.Visible = true;
+            LblReturn.Visible = false;
+            
         }
 
   
@@ -302,7 +357,7 @@ namespace LibrarySystem.Forms
             if (string.IsNullOrEmpty(searchText))
             {
 
-                FillOrders();
+                FillActiveOrders();
                 return;
             }
             var orders = _context.Orders
@@ -337,6 +392,7 @@ namespace LibrarySystem.Forms
             PnlNewOrder.Visible = true;
             PnlAllOrders.Visible = false;
             BtnAllOrders.Visible = true;
+            BtnAllReturns.Visible = true;
             BtnNewOrder.Visible = false;
         }
 
@@ -400,7 +456,7 @@ namespace LibrarySystem.Forms
             NupBookCount.Value = 1;
             PnlOrderInfo.Visible = false;
             ClearOrders();
-            FillOrders();
+            FillActiveOrders();
             ClearBooks();
             FillBooksSearch();
 
@@ -408,10 +464,12 @@ namespace LibrarySystem.Forms
 
         private void BtnReturn_Click(object sender, EventArgs e)
         {
+            if(_selectedOrder == null)
+            {
+                MessageBox.Show("Please select order to return","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
             DialogResult r  = MessageBox.Show("Are you sure?", "Book return", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            
-
-
+  
             if(r == DialogResult.Yes)
             {
                 //(sender as DataGridView).CurrentRow.DefaultCellStyle.SelectionBackColor = Color.Green;
@@ -420,7 +478,7 @@ namespace LibrarySystem.Forms
                  _returnBook.Count += _selectedOrder.BookCount;
                 _context.SaveChanges();
                 ClearOrders();
-                FillOrders();
+                FillActiveOrders();
             }
             if (r == DialogResult.No)
             {
@@ -430,7 +488,23 @@ namespace LibrarySystem.Forms
 
         }
 
-  
+        private void BtnAllReturns_Click(object sender, EventArgs e)
+        {
+            
+            MessageBox.Show(DateTime.Now.ToString());
+            PnlNewOrder.Visible = false;
+            PnlAllOrders.Visible = true;
+            DgvAllOrders.Rows.Clear();
+            FillPassiveOrders();
+            LblAllOrders.Visible = false;
+            LblReturn.Visible = true;
+            BtnReturn.Visible = false;
+        }
+
+        private void BtnLateReturn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
