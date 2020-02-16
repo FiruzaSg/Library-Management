@@ -33,19 +33,14 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.DgvAllOrders = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PnlAllOrders = new System.Windows.Forms.Panel();
+            this.BtnReturn = new System.Windows.Forms.Button();
+            this.BtnNewOrder = new System.Windows.Forms.Button();
             this.PnlNewOrder = new System.Windows.Forms.Panel();
             this.PnlOrderInfo = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnCancelOrder = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DgvBasket = new System.Windows.Forms.DataGridView();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label12 = new System.Windows.Forms.Label();
@@ -83,18 +78,32 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
-            this.BtnNewOrder = new System.Windows.Forms.Button();
             this.BtnAllOrders = new System.Windows.Forms.Button();
-            this.BtnReturn = new System.Windows.Forms.Button();
+            this.DgvAllOrders = new System.Windows.Forms.DataGridView();
+            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TxbOrderSearch = new System.Windows.Forms.TextBox();
+            this.BtnOrderSearch = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).BeginInit();
             this.PnlAllOrders.SuspendLayout();
             this.PnlNewOrder.SuspendLayout();
             this.PnlOrderInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvBasket)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NupBookCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvBookSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCustomersSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -143,72 +152,52 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 23);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(22, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 29);
+            this.label1.Size = new System.Drawing.Size(126, 29);
             this.label1.TabIndex = 4;
             this.label1.Text = "All orders";
-            // 
-            // DgvAllOrders
-            // 
-            this.DgvAllOrders.AllowUserToAddRows = false;
-            this.DgvAllOrders.AllowUserToDeleteRows = false;
-            this.DgvAllOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DgvAllOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvAllOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6});
-            this.DgvAllOrders.Location = new System.Drawing.Point(17, 83);
-            this.DgvAllOrders.Name = "DgvAllOrders";
-            this.DgvAllOrders.Size = new System.Drawing.Size(790, 448);
-            this.DgvAllOrders.TabIndex = 5;
-            this.DgvAllOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAllOrders_CellClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Id";
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Customer";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Book";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Count";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Taken at";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Deadline";
-            this.Column6.Name = "Column6";
             // 
             // PnlAllOrders
             // 
             this.PnlAllOrders.BackColor = System.Drawing.Color.CadetBlue;
+            this.PnlAllOrders.Controls.Add(this.label14);
+            this.PnlAllOrders.Controls.Add(this.BtnOrderSearch);
+            this.PnlAllOrders.Controls.Add(this.TxbOrderSearch);
+            this.PnlAllOrders.Controls.Add(this.PnlNewOrder);
             this.PnlAllOrders.Controls.Add(this.DgvAllOrders);
+            this.PnlAllOrders.Controls.Add(this.BtnReturn);
             this.PnlAllOrders.Controls.Add(this.label1);
+            this.PnlAllOrders.Controls.Add(this.BtnNewOrder);
+            this.PnlAllOrders.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PnlAllOrders.Location = new System.Drawing.Point(12, 116);
             this.PnlAllOrders.Name = "PnlAllOrders";
-            this.PnlAllOrders.Size = new System.Drawing.Size(1309, 576);
+            this.PnlAllOrders.Size = new System.Drawing.Size(1321, 576);
             this.PnlAllOrders.TabIndex = 6;
+            // 
+            // BtnReturn
+            // 
+            this.BtnReturn.BackColor = System.Drawing.Color.Gold;
+            this.BtnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnReturn.Location = new System.Drawing.Point(824, 162);
+            this.BtnReturn.Name = "BtnReturn";
+            this.BtnReturn.Size = new System.Drawing.Size(160, 38);
+            this.BtnReturn.TabIndex = 6;
+            this.BtnReturn.Text = "Return book";
+            this.BtnReturn.UseVisualStyleBackColor = false;
+            // 
+            // BtnNewOrder
+            // 
+            this.BtnNewOrder.BackColor = System.Drawing.Color.PaleGreen;
+            this.BtnNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNewOrder.Location = new System.Drawing.Point(824, 103);
+            this.BtnNewOrder.Name = "BtnNewOrder";
+            this.BtnNewOrder.Size = new System.Drawing.Size(160, 38);
+            this.BtnNewOrder.TabIndex = 1;
+            this.BtnNewOrder.Text = "New order";
+            this.BtnNewOrder.UseVisualStyleBackColor = false;
+            this.BtnNewOrder.Click += new System.EventHandler(this.BtnNewOrder_Click);
             // 
             // PnlNewOrder
             // 
@@ -232,18 +221,19 @@
             this.PnlNewOrder.Controls.Add(this.DgvCustomersSearch);
             this.PnlNewOrder.Controls.Add(this.label3);
             this.PnlNewOrder.Controls.Add(this.label2);
-            this.PnlNewOrder.Location = new System.Drawing.Point(9, 116);
+            this.PnlNewOrder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PnlNewOrder.Location = new System.Drawing.Point(15, 147);
             this.PnlNewOrder.Name = "PnlNewOrder";
-            this.PnlNewOrder.Size = new System.Drawing.Size(1309, 755);
+            this.PnlNewOrder.Size = new System.Drawing.Size(1321, 755);
             this.PnlNewOrder.TabIndex = 7;
             this.PnlNewOrder.Visible = false;
             // 
             // PnlOrderInfo
             // 
             this.PnlOrderInfo.BackColor = System.Drawing.Color.Khaki;
-            this.PnlOrderInfo.Controls.Add(this.button1);
+            this.PnlOrderInfo.Controls.Add(this.BtnCancelOrder);
             this.PnlOrderInfo.Controls.Add(this.label13);
-            this.PnlOrderInfo.Controls.Add(this.dataGridView1);
+            this.PnlOrderInfo.Controls.Add(this.DgvBasket);
             this.PnlOrderInfo.Controls.Add(this.label12);
             this.PnlOrderInfo.Controls.Add(this.BtnCreateOrder);
             this.PnlOrderInfo.Controls.Add(this.label11);
@@ -251,46 +241,48 @@
             this.PnlOrderInfo.Controls.Add(this.label10);
             this.PnlOrderInfo.Location = new System.Drawing.Point(32, 342);
             this.PnlOrderInfo.Name = "PnlOrderInfo";
-            this.PnlOrderInfo.Size = new System.Drawing.Size(552, 261);
+            this.PnlOrderInfo.Size = new System.Drawing.Size(632, 231);
             this.PnlOrderInfo.TabIndex = 25;
             this.PnlOrderInfo.Visible = false;
             // 
-            // button1
+            // BtnCancelOrder
             // 
-            this.button1.BackColor = System.Drawing.Color.Gold;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(347, 210);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 39);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BtnCancelOrder.BackColor = System.Drawing.Color.Gold;
+            this.BtnCancelOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCancelOrder.Location = new System.Drawing.Point(434, 178);
+            this.BtnCancelOrder.Name = "BtnCancelOrder";
+            this.BtnCancelOrder.Size = new System.Drawing.Size(162, 39);
+            this.BtnCancelOrder.TabIndex = 28;
+            this.BtnCancelOrder.Text = "Cancel";
+            this.BtnCancelOrder.UseVisualStyleBackColor = false;
+            this.BtnCancelOrder.Click += new System.EventHandler(this.BtnCancelOrder_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(515, 123);
+            this.label13.Location = new System.Drawing.Point(602, 89);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 25);
             this.label13.TabIndex = 27;
             this.label13.Text = "$";
             // 
-            // dataGridView1
+            // DgvBasket
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DgvBasket.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DgvBasket.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvBasket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvBasket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column18,
-            this.Column19});
-            this.dataGridView1.Location = new System.Drawing.Point(15, 55);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(138, 133);
-            this.dataGridView1.TabIndex = 26;
+            this.Column19,
+            this.Column21,
+            this.Column22});
+            this.DgvBasket.Location = new System.Drawing.Point(15, 55);
+            this.DgvBasket.Name = "DgvBasket";
+            this.DgvBasket.Size = new System.Drawing.Size(262, 103);
+            this.DgvBasket.TabIndex = 26;
             // 
             // Column18
             // 
@@ -306,7 +298,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 222);
+            this.label12.Location = new System.Drawing.Point(12, 202);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(165, 13);
             this.label12.TabIndex = 25;
@@ -316,7 +308,7 @@
             // 
             this.BtnCreateOrder.BackColor = System.Drawing.Color.LightGreen;
             this.BtnCreateOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCreateOrder.Location = new System.Drawing.Point(347, 165);
+            this.BtnCreateOrder.Location = new System.Drawing.Point(434, 133);
             this.BtnCreateOrder.Name = "BtnCreateOrder";
             this.BtnCreateOrder.Size = new System.Drawing.Size(162, 39);
             this.BtnCreateOrder.TabIndex = 22;
@@ -338,7 +330,7 @@
             // RtbTotalPrice
             // 
             this.RtbTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RtbTotalPrice.Location = new System.Drawing.Point(347, 112);
+            this.RtbTotalPrice.Location = new System.Drawing.Point(434, 80);
             this.RtbTotalPrice.Name = "RtbTotalPrice";
             this.RtbTotalPrice.ReadOnly = true;
             this.RtbTotalPrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -350,7 +342,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(258, 128);
+            this.label10.Location = new System.Drawing.Point(345, 96);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(83, 16);
             this.label10.TabIndex = 23;
@@ -359,7 +351,7 @@
             // BtnAddToCard
             // 
             this.BtnAddToCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAddToCard.Location = new System.Drawing.Point(694, 342);
+            this.BtnAddToCard.Location = new System.Drawing.Point(703, 342);
             this.BtnAddToCard.Name = "BtnAddToCard";
             this.BtnAddToCard.Size = new System.Drawing.Size(169, 39);
             this.BtnAddToCard.TabIndex = 21;
@@ -369,7 +361,7 @@
             // 
             // NupBookCount
             // 
-            this.NupBookCount.Location = new System.Drawing.Point(769, 297);
+            this.NupBookCount.Location = new System.Drawing.Point(821, 297);
             this.NupBookCount.Maximum = new decimal(new int[] {
             5,
             0,
@@ -394,7 +386,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(644, 297);
+            this.label9.Location = new System.Drawing.Point(696, 297);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(126, 16);
             this.label9.TabIndex = 19;
@@ -559,6 +551,7 @@
             this.Column9,
             this.Column10,
             this.Column11});
+            this.DgvCustomersSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DgvCustomersSearch.Location = new System.Drawing.Point(28, 107);
             this.DgvCustomersSearch.Name = "DgvCustomersSearch";
             this.DgvCustomersSearch.Size = new System.Drawing.Size(579, 153);
@@ -602,10 +595,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(27, 23);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(22, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 29);
+            this.label2.Size = new System.Drawing.Size(136, 29);
             this.label2.TabIndex = 4;
             this.label2.Text = "New order";
             // 
@@ -617,18 +610,6 @@
             this.entityCommand1.EnablePlanCaching = true;
             this.entityCommand1.Transaction = null;
             // 
-            // BtnNewOrder
-            // 
-            this.BtnNewOrder.BackColor = System.Drawing.Color.CadetBlue;
-            this.BtnNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNewOrder.Location = new System.Drawing.Point(178, 73);
-            this.BtnNewOrder.Name = "BtnNewOrder";
-            this.BtnNewOrder.Size = new System.Drawing.Size(160, 38);
-            this.BtnNewOrder.TabIndex = 1;
-            this.BtnNewOrder.Text = "New order";
-            this.BtnNewOrder.UseVisualStyleBackColor = false;
-            this.BtnNewOrder.Click += new System.EventHandler(this.BtnNewOrder_Click);
-            // 
             // BtnAllOrders
             // 
             this.BtnAllOrders.BackColor = System.Drawing.Color.CadetBlue;
@@ -639,18 +620,118 @@
             this.BtnAllOrders.TabIndex = 8;
             this.BtnAllOrders.Text = "All orders";
             this.BtnAllOrders.UseVisualStyleBackColor = false;
+            this.BtnAllOrders.Visible = false;
             this.BtnAllOrders.Click += new System.EventHandler(this.BtnAllOrders_Click);
             // 
-            // BtnReturn
+            // DgvAllOrders
             // 
-            this.BtnReturn.BackColor = System.Drawing.Color.LightGray;
-            this.BtnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReturn.Location = new System.Drawing.Point(344, 73);
-            this.BtnReturn.Name = "BtnReturn";
-            this.BtnReturn.Size = new System.Drawing.Size(160, 38);
-            this.BtnReturn.TabIndex = 6;
-            this.BtnReturn.Text = "Return book";
-            this.BtnReturn.UseVisualStyleBackColor = false;
+            this.DgvAllOrders.AllowUserToAddRows = false;
+            this.DgvAllOrders.AllowUserToDeleteRows = false;
+            this.DgvAllOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvAllOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvAllOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column24,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column8,
+            this.Column20,
+            this.Column23});
+            this.DgvAllOrders.Location = new System.Drawing.Point(27, 103);
+            this.DgvAllOrders.Name = "DgvAllOrders";
+            this.DgvAllOrders.Size = new System.Drawing.Size(784, 448);
+            this.DgvAllOrders.TabIndex = 5;
+            this.DgvAllOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAllOrders_CellClick);
+            // 
+            // Column21
+            // 
+            this.Column21.HeaderText = "Count";
+            this.Column21.Name = "Column21";
+            // 
+            // Column22
+            // 
+            this.Column22.HeaderText = "Price";
+            this.Column22.Name = "Column22";
+            // 
+            // TxbOrderSearch
+            // 
+            this.TxbOrderSearch.Location = new System.Drawing.Point(107, 71);
+            this.TxbOrderSearch.Name = "TxbOrderSearch";
+            this.TxbOrderSearch.Size = new System.Drawing.Size(240, 20);
+            this.TxbOrderSearch.TabIndex = 8;
+            // 
+            // BtnOrderSearch
+            // 
+            this.BtnOrderSearch.Location = new System.Drawing.Point(363, 69);
+            this.BtnOrderSearch.Name = "BtnOrderSearch";
+            this.BtnOrderSearch.Size = new System.Drawing.Size(75, 23);
+            this.BtnOrderSearch.TabIndex = 9;
+            this.BtnOrderSearch.Text = "Search";
+            this.BtnOrderSearch.UseVisualStyleBackColor = true;
+            this.BtnOrderSearch.Click += new System.EventHandler(this.BtnOrderSearch_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(24, 73);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 13);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Customer name";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Id";
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Name";
+            this.Column2.Name = "Column2";
+            // 
+            // Column24
+            // 
+            this.Column24.HeaderText = "Surname";
+            this.Column24.Name = "Column24";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Book";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Count";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Taken at";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Deadline";
+            this.Column6.Name = "Column6";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Price";
+            this.Column8.Name = "Column8";
+            // 
+            // Column20
+            // 
+            this.Column20.HeaderText = "Fine";
+            this.Column20.Name = "Column20";
+            // 
+            // Column23
+            // 
+            this.Column23.HeaderText = "Status";
+            this.Column23.Name = "Column23";
             // 
             // Dashboard
             // 
@@ -658,13 +739,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ClientSize = new System.Drawing.Size(1333, 745);
-            this.Controls.Add(this.PnlNewOrder);
-            this.Controls.Add(this.BtnReturn);
             this.Controls.Add(this.BtnAllOrders);
             this.Controls.Add(this.PnlAllOrders);
-            this.Controls.Add(this.BtnNewOrder);
             this.Controls.Add(this.menuStrip1);
-            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Dashboard";
@@ -672,17 +750,17 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).EndInit();
             this.PnlAllOrders.ResumeLayout(false);
             this.PnlAllOrders.PerformLayout();
             this.PnlNewOrder.ResumeLayout(false);
             this.PnlNewOrder.PerformLayout();
             this.PnlOrderInfo.ResumeLayout(false);
             this.PnlOrderInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvBasket)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NupBookCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvBookSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCustomersSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -695,7 +773,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView DgvAllOrders;
         private System.Windows.Forms.Panel PnlAllOrders;
         private System.Windows.Forms.Panel PnlNewOrder;
         private System.Windows.Forms.Label label3;
@@ -735,18 +812,28 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DgvBasket;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button BtnReturn;
+        private System.Windows.Forms.Button BtnCancelOrder;
+        private System.Windows.Forms.DataGridView DgvAllOrders;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button BtnOrderSearch;
+        private System.Windows.Forms.TextBox TxbOrderSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button BtnReturn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
     }
 }

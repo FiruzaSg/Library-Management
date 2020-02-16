@@ -30,35 +30,29 @@ namespace LibrarySystem.Forms
             FillOrders();
             FillCustomersSearch();
             FillBooksSearch();
-
-
         }
 
         #region Fill and Clear methods
         private void FillOrders()
         {
             var Orders = _context.Orders.Include("Customer").Include("Book").ToList();
-
+            
             foreach (var item in Orders)
             {
                 DgvAllOrders.Rows.Add(item.Id,
-                                      item.Customer.Name + " " + item.Customer.Surname,
+                                      item.Customer.Name,
+                                      item.Customer.Surname,
                                       item.Book.Name,
                                       item.BookCount,
                                       item.TakenAt,
                                       item.Deadline,
-                                      item.FinePrice
-                                     );
+                                      item.Price,
+                                      item.FinePrice,
+                                      item.IsDone ? "Active" : "Passive"
+                                     ) ;
 
             }
         }
-
-        private void UpdateContext()
-        {
-            _context = new LibraryDbContext();
-        }
-
-
         private void FillCustomersSearch()
         {
 
@@ -96,22 +90,36 @@ namespace LibrarySystem.Forms
             }
         }
 
+        public void FillBasket()
+        {
+
+            decimal price = _selectedBook.Price * NupBookCount.Value;
+            DgvBasket.Rows.Add(_selectedBook.Id,
+                               _selectedBook.Name,
+                               NupBookCount.Value,
+                               price
+                               );
+
+           
+
+        }
+        private void UpdateContext()
+        {
+            _context = new LibraryDbContext();
+        }
         public void ClearBooks()
         {
             DgvBookSearch.Rows.Clear();
         }
-
         public void ClearOrders()
         {
             DgvAllOrders.Rows.Clear();
         }
 
-
-
         #endregion
 
 
-
+        #region Events and Actions
         private void BtnBookForm_Click(object sender, EventArgs e)
         {
             BookForm createBook = new BookForm();
@@ -154,17 +162,21 @@ namespace LibrarySystem.Forms
         {
             PnlNewOrder.Visible = true;
             PnlAllOrders.Visible = false;
+            BtnAllOrders.Visible = true;
+            BtnNewOrder.Visible = false;
         }
 
         private void BtnAllOrders_Click(object sender, EventArgs e)
         {
             PnlAllOrders.Visible = true;
             PnlNewOrder.Visible = false;
+            BtnNewOrder.Visible = true;
+            BtnAllOrders.Visible = false;
         }
 
         private void BtnAddToCard_Click(object sender, EventArgs e)
         {
-
+           
             if (_selectedCustomer == null ||
                 _selectedBook == null)
             {
@@ -173,11 +185,12 @@ namespace LibrarySystem.Forms
             }
 
             PnlOrderInfo.Visible = true;
+            DgvBasket.Rows.Clear();
 
 
-            decimal price;
-            price = NupBookCount.Value * (_selectedBook.Price);
+            decimal price = _selectedBook.Price * NupBookCount.Value;
             RtbTotalPrice.Text = price.ToString();
+            FillBasket();
             TxbCustomerSearch.Clear();
             TxbBookSearch.Clear();
             NupBookCount.Value = 1;
@@ -203,7 +216,6 @@ namespace LibrarySystem.Forms
         }
         private void DgvBookSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
             try
             {
                 int id = Convert.ToInt32(DgvBookSearch.Rows[e.RowIndex].Cells[0].Value.ToString());
@@ -241,7 +253,9 @@ namespace LibrarySystem.Forms
                 BookCount = Convert.ToInt32(NupBookCount.Value),
                 TakenAt = DtpNewTaken.Value,
                 Deadline = DtpNewDeadline.Value,
-                FinePrice = 0
+                Price = Convert.ToDecimal(RtbTotalPrice.Text) * NupBookCount.Value,
+                FinePrice = 0,
+                IsDone = true
 
             };
 
@@ -249,12 +263,15 @@ namespace LibrarySystem.Forms
             _context.Orders.Add(order);
             _selectedBook.Count -= Convert.ToInt32(NupBookCount.Value);
             _context.SaveChanges();
+            DgvCustomersSearch.ClearSelection();
+            DgvBookSearch.ClearSelection();
             RtbTotalPrice.Clear();
-
+            PnlOrderInfo.Visible = false;
             ClearOrders();
             FillOrders();
             ClearBooks();
             FillBooksSearch();
+           
         }
 
         private void BtnCustomerSearch_Click(object sender, EventArgs e)
@@ -315,7 +332,7 @@ namespace LibrarySystem.Forms
             TxbBookSearch.Clear();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnCancelOrder_Click(object sender, EventArgs e)
         {
             DgvCustomersSearch.ClearSelection();
             DgvBookSearch.ClearSelection();
@@ -324,5 +341,43 @@ namespace LibrarySystem.Forms
             PnlOrderInfo.Visible = false;
         }
 
+        #endregion
+
+        private void BtnOrderSearch_Click(object sender, EventArgs e)
+        {
+            DgvAllOrders.Rows.Clear();
+            string searchText = TxbOrderSearch.Text.Trim();
+            if (string.IsNullOrEmpty(searchText))
+            {
+
+                FillOrders();
+                return;
+            }
+            var orders = _context.Orders
+                .Where(o => searchText != string.Empty ? o.Customer.Name.StartsWith(searchText) : false)
+                .OrderBy(o => o.Customer.Name)
+                .ToList();
+
+
+
+            foreach (var item in orders)
+            {
+                DgvAllOrders.Rows.Add(item.Id,
+                                      item.Customer.Name,
+                                      item.Customer.Surname,
+                                      item.Book.Name,
+                                      item.BookCount,
+                                      item.TakenAt,
+                                      item.Deadline,
+                                      item.Price,
+                                      item.FinePrice,
+                                      item.IsDone ? "Active" : "Passive");
+            }
+
+            
+
+
+        }
     }
+
 }

@@ -28,10 +28,14 @@ namespace LibrarySystem.Models
         [Required]
         public DateTime Deadline { get; set; }
 
-        [Required]
+        [Column(TypeName = "money")]
+        public decimal Price { get; set; }
+
+     
         [Column(TypeName = "money")]
         public decimal FinePrice { get; set; }
 
+        public bool IsDone { get; set; }
         public Customer Customer { get; set; }
         public Book Book { get; set; }
     }
