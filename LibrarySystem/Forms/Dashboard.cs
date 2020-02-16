@@ -35,10 +35,11 @@ namespace LibrarySystem.Forms
 
         #region Fill and Clear methods
 
-        private void FillPassiveOrders()
+       
+        private void FillPassiveOrders() // Fills closed orders to datagridview
         {
             var Orders = _context.Orders.Include("Book").Include("Customer")
-                                               .Where(c => c.IsDone == false)
+                                               .Where(c => c.IsOpen == false)
                                                .ToList();
 
             foreach (var item in Orders)
@@ -52,16 +53,17 @@ namespace LibrarySystem.Forms
                                       item.Deadline,
                                       item.Price,
                                       item.FinePrice,
-                                      item.IsDone ? "Active" : "Passive",
+                                      item.IsOpen ? "Active" : "Passive",
                                       item.BookId
                                      );
             }
-        }
-            
-        private void FillActiveOrders()
+        } 
+
+       
+        private void FillActiveOrders() // Fills opened orders to datagridview
         {
             var Orders = _context.Orders.Include("Book").Include("Customer")
-                                                .Where(c => c.IsDone ==true)
+                                                .Where(c => c.IsOpen ==true)
                                                 .ToList();
             
             foreach (var item in Orders)
@@ -75,37 +77,60 @@ namespace LibrarySystem.Forms
                                       item.Deadline,
                                       item.Price,
                                       item.FinePrice,
-                                      item.IsDone ? "Active" : "Passive",
+                                      item.IsOpen ? "Active" : "Passive",
                                       item.BookId
                                      ) ;
 
             }
         }
-
-        private void FillLateOrders()
+        private void FillAllOrders() // Fills all orders to datagridview
         {
-            DateTime now = new DateTime();
-            //var Orders = _context.Orders.Include("Book").Include("Customer")
-            //                                  .Where(c => c.Deadline < )
-            //                                  .ToList();
+            var Orders = _context.Orders.Include("Book").Include("Customer").ToList();
 
-            //foreach (var item in Orders)
-            //{
-            //    DgvAllOrders.Rows.Add(item.Id,
-            //                          item.Customer.Name,
-            //                          item.Customer.Surname,
-            //                          item.Book.Name,
-            //                          item.BookCount,
-            //                          item.TakenAt,
-            //                          item.Deadline,
-            //                          item.Price,
-            //                          item.FinePrice,
-            //                          item.IsDone ? "Active" : "Passive",
-            //                          item.BookId
-            //                         );
-            //}
+            foreach (var item in Orders)
+            {
+                DgvAllOrders.Rows.Add(item.Id,
+                                      item.Customer.Name,
+                                      item.Customer.Surname,
+                                      item.Book.Name,
+                                      item.BookCount,
+                                      item.TakenAt,
+                                      item.Deadline,
+                                      item.Price,
+                                      item.FinePrice,
+                                      item.IsOpen ? "Active" : "Passive",
+                                      item.BookId
+                                     );
+
+            }
+
         }
-        private void FillCustomersSearch()
+
+            private void FillLateOrders()  // Fills late orders to datagridview
+        {
+            var Orders = _context.Orders.Include("Book").Include("Customer")
+                                              .Where(c => c.Deadline < DateTime.Now && c.IsOpen == true)
+                                              .ToList();
+
+            foreach (var item in Orders)
+            {
+                DgvAllOrders.Rows.Add(item.Id,
+                                      item.Customer.Name,
+                                      item.Customer.Surname,
+                                      item.Book.Name,
+                                      item.BookCount,
+                                      item.TakenAt,
+                                      item.Deadline,
+                                      item.Price,
+                                      item.FinePrice,
+                                      item.IsOpen ? "Active" : "Passive",
+                                      item.BookId
+                                     );
+            }
+        }
+
+        
+        private void FillCustomersSearch() // Fills customers to datagridview
         {
 
             var Customers = _context.Customers.ToList();
@@ -121,7 +146,8 @@ namespace LibrarySystem.Forms
             }
         }
 
-        public void FillBooksSearch()
+       
+        public void FillBooksSearch()  // Fills late books to datagridview
         {
 
             var Books = _context.Books
@@ -159,6 +185,8 @@ namespace LibrarySystem.Forms
         {
             _context = new LibraryDbContext();
         }
+
+       
         public void ClearBooks()
         {
             DgvBookSearch.Rows.Clear();
@@ -172,13 +200,15 @@ namespace LibrarySystem.Forms
 
 
         #region Events and Actions
-        private void BtnBookForm_Click(object sender, EventArgs e)
+
+        
+        private void BtnBookForm_Click(object sender, EventArgs e) //Opens book form for adding,editin,deleting book
         {
             BookForm createBook = new BookForm();
             createBook.ShowDialog();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void toolStripMenuItem1_Click(object sender, EventArgs e) //Opens user form for adding,editin,deleting user
         {
             UserForm userForm = new UserForm();
 
@@ -189,7 +219,7 @@ namespace LibrarySystem.Forms
 
         private void DgvAllOrders_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-
+           
             try
             {
                 int id = Convert.ToInt32(DgvAllOrders.Rows[e.RowIndex].Cells[0].Value.ToString());
@@ -210,13 +240,13 @@ namespace LibrarySystem.Forms
 
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void toolStripMenuItem2_Click(object sender, EventArgs e) //Opens customer form for adding,editin,deleting customer
         {
             CustomerForm customersForm = new CustomerForm();
             customersForm.ShowDialog();
         }
 
-        private void BtnNewOrder_Click(object sender, EventArgs e)
+        private void BtnNewOrder_Click(object sender, EventArgs e) //Opens for creating order
         {
             PnlNewOrder.Visible = true;
             PnlAllOrders.Visible = false;
@@ -377,7 +407,7 @@ namespace LibrarySystem.Forms
                                       item.TakenAt,
                                       item.Deadline,
                                       item.Price,
-                                      item.IsDone ? "Active" : "Passive");
+                                      item.IsOpen ? "Active" : "Passive");
             }
 
             
@@ -444,7 +474,7 @@ namespace LibrarySystem.Forms
                 TakenAt = DtpNewTaken.Value,
                 Deadline = DtpNewDeadline.Value,
                 Price = Convert.ToDecimal(RtbTotalPrice.Text) * NupBookCount.Value,
-                IsDone = true
+                IsOpen = true
 
             };
 
@@ -462,36 +492,29 @@ namespace LibrarySystem.Forms
 
         }
 
+        // Return book
         private void BtnReturn_Click(object sender, EventArgs e)
         {
-            if(_selectedOrder == null)
+
+            if (_selectedOrder == null)
             {
                 MessageBox.Show("Please select order to return","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
-            DialogResult r  = MessageBox.Show("Are you sure?", "Book return", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-  
-            if(r == DialogResult.Yes)
-            {
-                //(sender as DataGridView).CurrentRow.DefaultCellStyle.SelectionBackColor = Color.Green;
-                _selectedOrder.IsDone = false;
 
-                 _returnBook.Count += _selectedOrder.BookCount;
-                _context.SaveChanges();
-                ClearOrders();
-                FillActiveOrders();
-            }
-            if (r == DialogResult.No)
-            {
-                return;
+           
+            decimal Percent = 0.1M;
+            decimal FinePrice = _selectedOrder.Price * ((DateTime.Now - _selectedOrder.Deadline).Days) * Percent;
+            RtbFinePrice.Text = FinePrice.ToString();
+            PnlPaymentInfo.Visible = true;
+            
 
-            }
-
+            
         }
 
+        // Inserts AllReturns to Datagridview
         private void BtnAllReturns_Click(object sender, EventArgs e)
         {
             
-            MessageBox.Show(DateTime.Now.ToString());
             PnlNewOrder.Visible = false;
             PnlAllOrders.Visible = true;
             DgvAllOrders.Rows.Clear();
@@ -501,9 +524,59 @@ namespace LibrarySystem.Forms
             BtnReturn.Visible = false;
         }
 
+        //Inserts LateReturns to Datagridview
         private void BtnLateReturn_Click(object sender, EventArgs e)
         {
+            
+            DgvAllOrders.Rows.Clear();
+            FillLateOrders();
+            GrbReportRange.Hide();
+            BtnReturn.Visible = true;
+        }
 
+        //Shows fine for late return
+        private void BtnPayFine_Click_1(object sender, EventArgs e)
+        {
+            
+             DialogResult r = MessageBox.Show("Are you sure?", "Book return", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (r == DialogResult.Yes)
+            {
+                
+
+                if(_selectedOrder.Deadline < DateTime.Now)
+                {
+
+                }
+                //(sender as DataGridView).CurrentRow.DefaultCellStyle.SelectionBackColor = Color.Green;
+                _selectedOrder.IsOpen = false;
+
+                _returnBook.Count += _selectedOrder.BookCount;
+                _selectedOrder.FinePrice = Convert.ToDecimal(RtbFinePrice.Text);
+                
+                _context.SaveChanges();
+                ClearOrders();
+                FillLateOrders();
+                RtbFinePrice.Clear();
+            }
+            if (r == DialogResult.No)
+            {
+                return;
+
+            }
+            
+        }
+
+        private void BtnOrder_Click(object sender, EventArgs e)
+        {
+            
+            
+            DgvAllOrders.Rows.Clear();
+            FillAllOrders();
+            BtnExcel.Show();
+            GrbReportRange.Show();
+            BtnNewOrder.Hide();
+            BtnReturn.Hide();
         }
     }
 

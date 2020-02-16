@@ -35,7 +35,7 @@ namespace LibrarySystem.Models
         [Column(TypeName = "money")]
         public decimal? FinePrice { get; set; }
 
-        public bool IsDone { get; set; }
+        public bool IsOpen { get; set; }
         public Customer Customer { get; set; }
         public Book Book { get; set; }
     }
