@@ -33,7 +33,7 @@ namespace LibrarySystem.Models
 
      
         [Column(TypeName = "money")]
-        public decimal FinePrice { get; set; }
+        public decimal? FinePrice { get; set; }
 
         public bool IsDone { get; set; }
         public Customer Customer { get; set; }

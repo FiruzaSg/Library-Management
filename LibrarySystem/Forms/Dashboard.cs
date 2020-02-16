@@ -22,6 +22,7 @@ namespace LibrarySystem.Forms
         private Order _selectedOrder;
         private Customer _selectedCustomer;
         private Book _selectedBook;
+        public Book _returnBook;
         public Dashboard()
         {
             _context = new LibraryDbContext();
@@ -48,7 +49,8 @@ namespace LibrarySystem.Forms
                                       item.Deadline,
                                       item.Price,
                                       item.FinePrice,
-                                      item.IsDone ? "Active" : "Passive"
+                                      item.IsDone ? "Active" : "Passive",
+                                      item.BookId
                                      ) ;
 
             }
@@ -135,12 +137,17 @@ namespace LibrarySystem.Forms
 
         }
 
-        private void DgvAllOrders_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvAllOrders_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
+
             try
             {
                 int id = Convert.ToInt32(DgvAllOrders.Rows[e.RowIndex].Cells[0].Value.ToString());
                 _selectedOrder = _context.Orders.Find(id);
+
+                int bookId = Convert.ToInt32(DgvAllOrders.Rows[e.RowIndex].Cells[10].Value.ToString());
+                _returnBook = _context.Books.Find(bookId);
+
             }
             catch (NullReferenceException error)
             {
@@ -150,6 +157,7 @@ namespace LibrarySystem.Forms
             {
                 // pass
             }
+
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -174,28 +182,7 @@ namespace LibrarySystem.Forms
             BtnAllOrders.Visible = false;
         }
 
-        private void BtnAddToCard_Click(object sender, EventArgs e)
-        {
-           
-            if (_selectedCustomer == null ||
-                _selectedBook == null)
-            {
-                MessageBox.Show("Please select customer and book", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            PnlOrderInfo.Visible = true;
-            DgvBasket.Rows.Clear();
-
-
-            decimal price = _selectedBook.Price * NupBookCount.Value;
-            RtbTotalPrice.Text = price.ToString();
-            FillBasket();
-            TxbCustomerSearch.Clear();
-            TxbBookSearch.Clear();
-            NupBookCount.Value = 1;
-
-        }
+  
 
 
         private void DgvCustomersSearch_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -214,7 +201,7 @@ namespace LibrarySystem.Forms
                 // pass
             }
         }
-        private void DgvBookSearch_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvBookSearch_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -233,51 +220,11 @@ namespace LibrarySystem.Forms
         }
 
 
-        private void BtnCreateOrder_Click(object sender, EventArgs e)
-        {
-            if (_selectedCustomer == null || _selectedBook == null)
-            {
-                MessageBox.Show("Please select customer and book", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            DialogResult r = MessageBox.Show("Are you sure?", "Order confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (r == DialogResult.No)
-            {
-                return;
 
-            }
-            Order order = new Order
-            {
-                CustomerId = _selectedCustomer.Id,
-                BookId = _selectedBook.Id,
-                BookCount = Convert.ToInt32(NupBookCount.Value),
-                TakenAt = DtpNewTaken.Value,
-                Deadline = DtpNewDeadline.Value,
-                Price = Convert.ToDecimal(RtbTotalPrice.Text) * NupBookCount.Value,
-                FinePrice = 0,
-                IsDone = true
-
-            };
-
-
-            _context.Orders.Add(order);
-            _selectedBook.Count -= Convert.ToInt32(NupBookCount.Value);
-            _context.SaveChanges();
-            DgvCustomersSearch.ClearSelection();
-            DgvBookSearch.ClearSelection();
-            RtbTotalPrice.Clear();
-            PnlOrderInfo.Visible = false;
-            ClearOrders();
-            FillOrders();
-            ClearBooks();
-            FillBooksSearch();
-           
-        }
-
-        private void BtnCustomerSearch_Click(object sender, EventArgs e)
+        private void BtnCustomerSearch_Click_1(object sender, EventArgs e)
         {
             DgvCustomersSearch.Rows.Clear();
-            UpdateContext();
+            //UpdateContext();
             string searchText = TxbCustomerSearch.Text.Trim();
             if (string.IsNullOrEmpty(searchText))
             {
@@ -288,7 +235,7 @@ namespace LibrarySystem.Forms
 
             var customers = _context.Customers
                 .Where(c => searchText != string.Empty ? c.Name.StartsWith(searchText) : false)
-                .OrderBy(p => p.Name)
+                .OrderBy(c => c.Name)
                 .ToList();
 
 
@@ -305,34 +252,39 @@ namespace LibrarySystem.Forms
             TxbCustomerSearch.Clear();
         }
 
-        private void BtnBookSearch_Click(object sender, EventArgs e)
+        private void BtnBookSearch_Click_1(object sender, EventArgs e)
         {
             DgvBookSearch.Rows.Clear();
-            UpdateContext();
             string searchText = TxbBookSearch.Text.Trim();
             if (string.IsNullOrEmpty(searchText))
             {
+
                 FillBooksSearch();
                 return;
             }
+
             var books = _context.Books
                 .Where(b => searchText != string.Empty ? b.Name.StartsWith(searchText) : false)
                 .OrderBy(b => b.Name)
                 .ToList();
 
+
+
             foreach (var item in books)
             {
                 DgvBookSearch.Rows.Add(item.Id,
-                                       item.Name,
-                                       item.Author.Fullname,
-                                       item.Genre.Name,
-                                       item.Price,
-                                       item.Count);
+                                            item.Name,
+                                            item.Genre.Name,
+                                            item.Author.Fullname,
+                                            item.Price,
+                                            item.Count
+                                            );
             }
+            
             TxbBookSearch.Clear();
         }
 
-        private void BtnCancelOrder_Click(object sender, EventArgs e)
+        private void BtnCancelOrder_Click_1(object sender, EventArgs e)
         {
             DgvCustomersSearch.ClearSelection();
             DgvBookSearch.ClearSelection();
@@ -343,7 +295,7 @@ namespace LibrarySystem.Forms
 
         #endregion
 
-        private void BtnOrderSearch_Click(object sender, EventArgs e)
+        private void BtnOrderSearch_Click_1(object sender, EventArgs e)
         {
             DgvAllOrders.Rows.Clear();
             string searchText = TxbOrderSearch.Text.Trim();
@@ -370,7 +322,6 @@ namespace LibrarySystem.Forms
                                       item.TakenAt,
                                       item.Deadline,
                                       item.Price,
-                                      item.FinePrice,
                                       item.IsDone ? "Active" : "Passive");
             }
 
@@ -378,6 +329,108 @@ namespace LibrarySystem.Forms
 
 
         }
+
+       
+
+        private void BtnNewOrder_Click_1(object sender, EventArgs e)
+        {
+            PnlNewOrder.Visible = true;
+            PnlAllOrders.Visible = false;
+            BtnAllOrders.Visible = true;
+            BtnNewOrder.Visible = false;
+        }
+
+        private void BtnAddToCard_Click_1(object sender, EventArgs e)
+        {
+            if (_selectedCustomer == null ||
+                _selectedBook == null)
+            {
+                MessageBox.Show("Please select customer and book", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if(_selectedBook.Count < NupBookCount.Value)
+            {
+                MessageBox.Show("No available books", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            PnlOrderInfo.Visible = true;
+            DgvBasket.Rows.Clear();
+
+
+            decimal price = _selectedBook.Price * NupBookCount.Value;
+            RtbTotalPrice.Text = price.ToString();
+            FillBasket();
+            TxbCustomerSearch.Clear();
+            TxbBookSearch.Clear();
+            
+        }
+
+        private void BtnCreateOrder_Click_1(object sender, EventArgs e)
+        {
+            if (_selectedCustomer == null || _selectedBook == null)
+            {
+                MessageBox.Show("Please select customer and book", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DialogResult r = MessageBox.Show("Are you sure?", "Order confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (r == DialogResult.No)
+            {
+                return;
+
+            }
+            Order order = new Order
+            {
+                CustomerId = _selectedCustomer.Id,
+                BookId = _selectedBook.Id,
+                BookCount = Convert.ToInt32(NupBookCount.Value),
+                TakenAt = DtpNewTaken.Value,
+                Deadline = DtpNewDeadline.Value,
+                Price = Convert.ToDecimal(RtbTotalPrice.Text) * NupBookCount.Value,
+                IsDone = true
+
+            };
+
+
+            _context.Orders.Add(order);
+            _selectedBook.Count -= Convert.ToInt32(NupBookCount.Value);
+            _context.SaveChanges();
+            RtbTotalPrice.Clear();
+            NupBookCount.Value = 1;
+            PnlOrderInfo.Visible = false;
+            ClearOrders();
+            FillOrders();
+            ClearBooks();
+            FillBooksSearch();
+
+        }
+
+        private void BtnReturn_Click(object sender, EventArgs e)
+        {
+            DialogResult r  = MessageBox.Show("Are you sure?", "Book return", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            
+
+
+            if(r == DialogResult.Yes)
+            {
+                //(sender as DataGridView).CurrentRow.DefaultCellStyle.SelectionBackColor = Color.Green;
+                _selectedOrder.IsDone = false;
+
+                 _returnBook.Count += _selectedOrder.BookCount;
+                _context.SaveChanges();
+                ClearOrders();
+                FillOrders();
+            }
+            if (r == DialogResult.No)
+            {
+                return;
+
+            }
+
+        }
+
+  
     }
 
 }

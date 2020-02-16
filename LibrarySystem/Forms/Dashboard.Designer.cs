@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.BtnBookForm = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.PnlAllOrders = new System.Windows.Forms.Panel();
-            this.BtnReturn = new System.Windows.Forms.Button();
-            this.BtnNewOrder = new System.Windows.Forms.Button();
+            this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
+            this.BtnAllOrders = new System.Windows.Forms.Button();
             this.PnlNewOrder = new System.Windows.Forms.Panel();
             this.PnlOrderInfo = new System.Windows.Forms.Panel();
             this.BtnCancelOrder = new System.Windows.Forms.Button();
@@ -43,6 +42,8 @@
             this.DgvBasket = new System.Windows.Forms.DataGridView();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label12 = new System.Windows.Forms.Label();
             this.BtnCreateOrder = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -77,14 +78,16 @@
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
-            this.BtnAllOrders = new System.Windows.Forms.Button();
-            this.DgvAllOrders = new System.Windows.Forms.DataGridView();
-            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TxbOrderSearch = new System.Windows.Forms.TextBox();
-            this.BtnOrderSearch = new System.Windows.Forms.Button();
+            this.PnlAllOrders = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
+            this.BtnOrderSearch = new System.Windows.Forms.Button();
+            this.TxbOrderSearch = new System.Windows.Forms.TextBox();
+            this.DgvAllOrders = new System.Windows.Forms.DataGridView();
+            this.BtnReturn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BtnNewOrder = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.BtnAllReturns = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,14 +98,15 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
-            this.PnlAllOrders.SuspendLayout();
             this.PnlNewOrder.SuspendLayout();
             this.PnlOrderInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvBasket)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NupBookCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvBookSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCustomersSearch)).BeginInit();
+            this.PnlAllOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,55 +153,26 @@
             this.toolStripMenuItem2.Text = "Customers";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
-            // label1
+            // entityCommand1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 29);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "All orders";
+            this.entityCommand1.CommandTimeout = 0;
+            this.entityCommand1.CommandTree = null;
+            this.entityCommand1.Connection = null;
+            this.entityCommand1.EnablePlanCaching = true;
+            this.entityCommand1.Transaction = null;
             // 
-            // PnlAllOrders
+            // BtnAllOrders
             // 
-            this.PnlAllOrders.BackColor = System.Drawing.Color.CadetBlue;
-            this.PnlAllOrders.Controls.Add(this.label14);
-            this.PnlAllOrders.Controls.Add(this.BtnOrderSearch);
-            this.PnlAllOrders.Controls.Add(this.TxbOrderSearch);
-            this.PnlAllOrders.Controls.Add(this.PnlNewOrder);
-            this.PnlAllOrders.Controls.Add(this.DgvAllOrders);
-            this.PnlAllOrders.Controls.Add(this.BtnReturn);
-            this.PnlAllOrders.Controls.Add(this.label1);
-            this.PnlAllOrders.Controls.Add(this.BtnNewOrder);
-            this.PnlAllOrders.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PnlAllOrders.Location = new System.Drawing.Point(12, 116);
-            this.PnlAllOrders.Name = "PnlAllOrders";
-            this.PnlAllOrders.Size = new System.Drawing.Size(1321, 576);
-            this.PnlAllOrders.TabIndex = 6;
-            // 
-            // BtnReturn
-            // 
-            this.BtnReturn.BackColor = System.Drawing.Color.Gold;
-            this.BtnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReturn.Location = new System.Drawing.Point(824, 162);
-            this.BtnReturn.Name = "BtnReturn";
-            this.BtnReturn.Size = new System.Drawing.Size(160, 38);
-            this.BtnReturn.TabIndex = 6;
-            this.BtnReturn.Text = "Return book";
-            this.BtnReturn.UseVisualStyleBackColor = false;
-            // 
-            // BtnNewOrder
-            // 
-            this.BtnNewOrder.BackColor = System.Drawing.Color.PaleGreen;
-            this.BtnNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNewOrder.Location = new System.Drawing.Point(824, 103);
-            this.BtnNewOrder.Name = "BtnNewOrder";
-            this.BtnNewOrder.Size = new System.Drawing.Size(160, 38);
-            this.BtnNewOrder.TabIndex = 1;
-            this.BtnNewOrder.Text = "New order";
-            this.BtnNewOrder.UseVisualStyleBackColor = false;
-            this.BtnNewOrder.Click += new System.EventHandler(this.BtnNewOrder_Click);
+            this.BtnAllOrders.BackColor = System.Drawing.Color.CadetBlue;
+            this.BtnAllOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAllOrders.Location = new System.Drawing.Point(12, 73);
+            this.BtnAllOrders.Name = "BtnAllOrders";
+            this.BtnAllOrders.Size = new System.Drawing.Size(160, 38);
+            this.BtnAllOrders.TabIndex = 8;
+            this.BtnAllOrders.Text = "All orders";
+            this.BtnAllOrders.UseVisualStyleBackColor = false;
+            this.BtnAllOrders.Visible = false;
+            this.BtnAllOrders.Click += new System.EventHandler(this.BtnAllOrders_Click);
             // 
             // PnlNewOrder
             // 
@@ -222,10 +197,10 @@
             this.PnlNewOrder.Controls.Add(this.label3);
             this.PnlNewOrder.Controls.Add(this.label2);
             this.PnlNewOrder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PnlNewOrder.Location = new System.Drawing.Point(15, 147);
+            this.PnlNewOrder.Location = new System.Drawing.Point(12, 128);
             this.PnlNewOrder.Name = "PnlNewOrder";
-            this.PnlNewOrder.Size = new System.Drawing.Size(1321, 755);
-            this.PnlNewOrder.TabIndex = 7;
+            this.PnlNewOrder.Size = new System.Drawing.Size(1326, 755);
+            this.PnlNewOrder.TabIndex = 10;
             this.PnlNewOrder.Visible = false;
             // 
             // PnlOrderInfo
@@ -255,7 +230,7 @@
             this.BtnCancelOrder.TabIndex = 28;
             this.BtnCancelOrder.Text = "Cancel";
             this.BtnCancelOrder.UseVisualStyleBackColor = false;
-            this.BtnCancelOrder.Click += new System.EventHandler(this.BtnCancelOrder_Click);
+            this.BtnCancelOrder.Click += new System.EventHandler(this.BtnCancelOrder_Click_1);
             // 
             // label13
             // 
@@ -295,6 +270,16 @@
             this.Column19.HeaderText = "Book";
             this.Column19.Name = "Column19";
             // 
+            // Column21
+            // 
+            this.Column21.HeaderText = "Count";
+            this.Column21.Name = "Column21";
+            // 
+            // Column22
+            // 
+            this.Column22.HeaderText = "Price";
+            this.Column22.Name = "Column22";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -314,7 +299,7 @@
             this.BtnCreateOrder.TabIndex = 22;
             this.BtnCreateOrder.Text = "Submit";
             this.BtnCreateOrder.UseVisualStyleBackColor = false;
-            this.BtnCreateOrder.Click += new System.EventHandler(this.BtnCreateOrder_Click);
+            this.BtnCreateOrder.Click += new System.EventHandler(this.BtnCreateOrder_Click_1);
             // 
             // label11
             // 
@@ -357,7 +342,7 @@
             this.BtnAddToCard.TabIndex = 21;
             this.BtnAddToCard.Text = "Add to card";
             this.BtnAddToCard.UseVisualStyleBackColor = true;
-            this.BtnAddToCard.Click += new System.EventHandler(this.BtnAddToCard_Click);
+            this.BtnAddToCard.Click += new System.EventHandler(this.BtnAddToCard_Click_1);
             // 
             // NupBookCount
             // 
@@ -415,6 +400,7 @@
             // DtpNewDeadline
             // 
             this.DtpNewDeadline.Location = new System.Drawing.Point(305, 297);
+            this.DtpNewDeadline.MinDate = new System.DateTime(2020, 2, 16, 0, 0, 0, 0);
             this.DtpNewDeadline.Name = "DtpNewDeadline";
             this.DtpNewDeadline.Size = new System.Drawing.Size(200, 20);
             this.DtpNewDeadline.TabIndex = 16;
@@ -422,9 +408,11 @@
             // DtpNewTaken
             // 
             this.DtpNewTaken.Location = new System.Drawing.Point(32, 297);
+            this.DtpNewTaken.MinDate = new System.DateTime(2020, 2, 16, 18, 30, 20, 0);
             this.DtpNewTaken.Name = "DtpNewTaken";
             this.DtpNewTaken.Size = new System.Drawing.Size(200, 20);
             this.DtpNewTaken.TabIndex = 15;
+            this.DtpNewTaken.Value = new System.DateTime(2020, 2, 16, 18, 30, 20, 0);
             // 
             // BtnBookSearch
             // 
@@ -434,7 +422,7 @@
             this.BtnBookSearch.TabIndex = 14;
             this.BtnBookSearch.Text = "Search";
             this.BtnBookSearch.UseVisualStyleBackColor = true;
-            this.BtnBookSearch.Click += new System.EventHandler(this.BtnBookSearch_Click);
+            this.BtnBookSearch.Click += new System.EventHandler(this.BtnBookSearch_Click_1);
             // 
             // label5
             // 
@@ -470,7 +458,7 @@
             this.DgvBookSearch.Name = "DgvBookSearch";
             this.DgvBookSearch.Size = new System.Drawing.Size(579, 153);
             this.DgvBookSearch.TabIndex = 11;
-            this.DgvBookSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvBookSearch_CellClick);
+            this.DgvBookSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvBookSearch_CellClick_1);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -519,7 +507,7 @@
             this.BtnCustomerSearch.TabIndex = 9;
             this.BtnCustomerSearch.Text = "Search";
             this.BtnCustomerSearch.UseVisualStyleBackColor = true;
-            this.BtnCustomerSearch.Click += new System.EventHandler(this.BtnCustomerSearch_Click);
+            this.BtnCustomerSearch.Click += new System.EventHandler(this.BtnCustomerSearch_Click_1);
             // 
             // label4
             // 
@@ -602,26 +590,47 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "New order";
             // 
-            // entityCommand1
+            // PnlAllOrders
             // 
-            this.entityCommand1.CommandTimeout = 0;
-            this.entityCommand1.CommandTree = null;
-            this.entityCommand1.Connection = null;
-            this.entityCommand1.EnablePlanCaching = true;
-            this.entityCommand1.Transaction = null;
+            this.PnlAllOrders.BackColor = System.Drawing.Color.CadetBlue;
+            this.PnlAllOrders.Controls.Add(this.label14);
+            this.PnlAllOrders.Controls.Add(this.BtnOrderSearch);
+            this.PnlAllOrders.Controls.Add(this.TxbOrderSearch);
+            this.PnlAllOrders.Controls.Add(this.DgvAllOrders);
+            this.PnlAllOrders.Controls.Add(this.BtnReturn);
+            this.PnlAllOrders.Controls.Add(this.label1);
+            this.PnlAllOrders.Controls.Add(this.BtnNewOrder);
+            this.PnlAllOrders.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PnlAllOrders.Location = new System.Drawing.Point(12, 122);
+            this.PnlAllOrders.Name = "PnlAllOrders";
+            this.PnlAllOrders.Size = new System.Drawing.Size(1321, 594);
+            this.PnlAllOrders.TabIndex = 11;
             // 
-            // BtnAllOrders
+            // label14
             // 
-            this.BtnAllOrders.BackColor = System.Drawing.Color.CadetBlue;
-            this.BtnAllOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAllOrders.Location = new System.Drawing.Point(12, 73);
-            this.BtnAllOrders.Name = "BtnAllOrders";
-            this.BtnAllOrders.Size = new System.Drawing.Size(160, 38);
-            this.BtnAllOrders.TabIndex = 8;
-            this.BtnAllOrders.Text = "All orders";
-            this.BtnAllOrders.UseVisualStyleBackColor = false;
-            this.BtnAllOrders.Visible = false;
-            this.BtnAllOrders.Click += new System.EventHandler(this.BtnAllOrders_Click);
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(24, 73);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 13);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Customer name";
+            // 
+            // BtnOrderSearch
+            // 
+            this.BtnOrderSearch.Location = new System.Drawing.Point(363, 69);
+            this.BtnOrderSearch.Name = "BtnOrderSearch";
+            this.BtnOrderSearch.Size = new System.Drawing.Size(75, 23);
+            this.BtnOrderSearch.TabIndex = 9;
+            this.BtnOrderSearch.Text = "Search";
+            this.BtnOrderSearch.UseVisualStyleBackColor = true;
+            this.BtnOrderSearch.Click += new System.EventHandler(this.BtnOrderSearch_Click_1);
+            // 
+            // TxbOrderSearch
+            // 
+            this.TxbOrderSearch.Location = new System.Drawing.Point(107, 71);
+            this.TxbOrderSearch.Name = "TxbOrderSearch";
+            this.TxbOrderSearch.Size = new System.Drawing.Size(240, 20);
+            this.TxbOrderSearch.TabIndex = 8;
             // 
             // DgvAllOrders
             // 
@@ -639,48 +648,64 @@
             this.Column6,
             this.Column8,
             this.Column20,
-            this.Column23});
+            this.Column23,
+            this.Column25});
             this.DgvAllOrders.Location = new System.Drawing.Point(27, 103);
             this.DgvAllOrders.Name = "DgvAllOrders";
             this.DgvAllOrders.Size = new System.Drawing.Size(784, 448);
             this.DgvAllOrders.TabIndex = 5;
-            this.DgvAllOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAllOrders_CellClick);
+            this.DgvAllOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAllOrders_CellClick_1);
             // 
-            // Column21
+            // BtnReturn
             // 
-            this.Column21.HeaderText = "Count";
-            this.Column21.Name = "Column21";
+            this.BtnReturn.BackColor = System.Drawing.Color.Gold;
+            this.BtnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnReturn.Location = new System.Drawing.Point(824, 162);
+            this.BtnReturn.Name = "BtnReturn";
+            this.BtnReturn.Size = new System.Drawing.Size(160, 38);
+            this.BtnReturn.TabIndex = 6;
+            this.BtnReturn.Text = "Return book";
+            this.BtnReturn.UseVisualStyleBackColor = false;
+            this.BtnReturn.Click += new System.EventHandler(this.BtnReturn_Click);
             // 
-            // Column22
+            // label1
             // 
-            this.Column22.HeaderText = "Price";
-            this.Column22.Name = "Column22";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(22, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 29);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "All orders";
             // 
-            // TxbOrderSearch
+            // BtnNewOrder
             // 
-            this.TxbOrderSearch.Location = new System.Drawing.Point(107, 71);
-            this.TxbOrderSearch.Name = "TxbOrderSearch";
-            this.TxbOrderSearch.Size = new System.Drawing.Size(240, 20);
-            this.TxbOrderSearch.TabIndex = 8;
+            this.BtnNewOrder.BackColor = System.Drawing.Color.PaleGreen;
+            this.BtnNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNewOrder.Location = new System.Drawing.Point(824, 103);
+            this.BtnNewOrder.Name = "BtnNewOrder";
+            this.BtnNewOrder.Size = new System.Drawing.Size(160, 38);
+            this.BtnNewOrder.TabIndex = 1;
+            this.BtnNewOrder.Text = "New order";
+            this.BtnNewOrder.UseVisualStyleBackColor = false;
+            this.BtnNewOrder.Click += new System.EventHandler(this.BtnNewOrder_Click_1);
             // 
-            // BtnOrderSearch
+            // contextMenuStrip1
             // 
-            this.BtnOrderSearch.Location = new System.Drawing.Point(363, 69);
-            this.BtnOrderSearch.Name = "BtnOrderSearch";
-            this.BtnOrderSearch.Size = new System.Drawing.Size(75, 23);
-            this.BtnOrderSearch.TabIndex = 9;
-            this.BtnOrderSearch.Text = "Search";
-            this.BtnOrderSearch.UseVisualStyleBackColor = true;
-            this.BtnOrderSearch.Click += new System.EventHandler(this.BtnOrderSearch_Click);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // label14
+            // BtnAllReturns
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(24, 73);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(80, 13);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "Customer name";
+            this.BtnAllReturns.BackColor = System.Drawing.Color.CadetBlue;
+            this.BtnAllReturns.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAllReturns.Location = new System.Drawing.Point(178, 73);
+            this.BtnAllReturns.Name = "BtnAllReturns";
+            this.BtnAllReturns.Size = new System.Drawing.Size(160, 38);
+            this.BtnAllReturns.TabIndex = 12;
+            this.BtnAllReturns.Text = "All returns";
+            this.BtnAllReturns.UseVisualStyleBackColor = false;
+            this.BtnAllReturns.Visible = false;
             // 
             // Column1
             // 
@@ -733,14 +758,22 @@
             this.Column23.HeaderText = "Status";
             this.Column23.Name = "Column23";
             // 
+            // Column25
+            // 
+            this.Column25.HeaderText = "BookId";
+            this.Column25.Name = "Column25";
+            this.Column25.Visible = false;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ClientSize = new System.Drawing.Size(1333, 745);
-            this.Controls.Add(this.BtnAllOrders);
+            this.Controls.Add(this.BtnAllReturns);
             this.Controls.Add(this.PnlAllOrders);
+            this.Controls.Add(this.PnlNewOrder);
+            this.Controls.Add(this.BtnAllOrders);
             this.Controls.Add(this.menuStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -750,8 +783,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.PnlAllOrders.ResumeLayout(false);
-            this.PnlAllOrders.PerformLayout();
             this.PnlNewOrder.ResumeLayout(false);
             this.PnlNewOrder.PerformLayout();
             this.PnlOrderInfo.ResumeLayout(false);
@@ -760,6 +791,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.NupBookCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvBookSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCustomersSearch)).EndInit();
+            this.PnlAllOrders.ResumeLayout(false);
+            this.PnlAllOrders.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -772,23 +805,22 @@
         private System.Windows.Forms.ToolStripMenuItem BtnBookForm;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel PnlAllOrders;
-        private System.Windows.Forms.Panel PnlNewOrder;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Data.Entity.Core.EntityClient.EntityCommand entityCommand1;
-        private System.Windows.Forms.Button BtnNewOrder;
-        private System.Windows.Forms.DataGridView DgvCustomersSearch;
         private System.Windows.Forms.Button BtnAllOrders;
-        private System.Windows.Forms.Button BtnCustomerSearch;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox TxbCustomerSearch;
-        private System.Windows.Forms.Button BtnBookSearch;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox TxbBookSearch;
-        private System.Windows.Forms.DataGridView DgvBookSearch;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel PnlNewOrder;
+        private System.Windows.Forms.Panel PnlOrderInfo;
+        private System.Windows.Forms.Button BtnCancelOrder;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DataGridView DgvBasket;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button BtnCreateOrder;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.RichTextBox RtbTotalPrice;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button BtnAddToCard;
         private System.Windows.Forms.NumericUpDown NupBookCount;
         private System.Windows.Forms.Label label9;
@@ -796,35 +828,38 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker DtpNewDeadline;
         private System.Windows.Forms.DateTimePicker DtpNewTaken;
-        private System.Windows.Forms.RichTextBox RtbTotalPrice;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button BtnCreateOrder;
-        private System.Windows.Forms.Panel PnlOrderInfo;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button BtnBookSearch;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox TxbBookSearch;
+        private System.Windows.Forms.DataGridView DgvBookSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button BtnCustomerSearch;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox TxbCustomerSearch;
+        private System.Windows.Forms.DataGridView DgvCustomersSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridView DgvBasket;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button BtnReturn;
-        private System.Windows.Forms.Button BtnCancelOrder;
-        private System.Windows.Forms.DataGridView DgvAllOrders;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel PnlAllOrders;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button BtnOrderSearch;
         private System.Windows.Forms.TextBox TxbOrderSearch;
+        private System.Windows.Forms.DataGridView DgvAllOrders;
+        private System.Windows.Forms.Button BtnReturn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BtnNewOrder;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Button BtnAllReturns;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
@@ -835,5 +870,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column25;
     }
 }

@@ -129,6 +129,10 @@
     <Compile Include="Migrations\202002152346240_IsDoneOrderAdded.designer.cs">
       <DependentUpon>202002152346240_IsDoneOrderAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002161234352_FinePriceNullableSetted.cs" />
+    <Compile Include="Migrations\202002161234352_FinePriceNullableSetted.designer.cs">
+      <DependentUpon>202002161234352_FinePriceNullableSetted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
@@ -173,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002152346240_IsDoneOrderAdded.resx">
       <DependentUpon>202002152346240_IsDoneOrderAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002161234352_FinePriceNullableSetted.resx">
+      <DependentUpon>202002161234352_FinePriceNullableSetted.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
