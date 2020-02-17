@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.BtnBookForm = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,6 @@
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label12 = new System.Windows.Forms.Label();
             this.BtnCreateOrder = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.RtbTotalPrice = new System.Windows.Forms.RichTextBox();
@@ -82,9 +82,22 @@
             this.BtnAllReturns = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.BtnLateReturn = new System.Windows.Forms.Button();
-            this.BtnNewOrder = new System.Windows.Forms.Button();
-            this.LblAllOrders = new System.Windows.Forms.Label();
-            this.BtnReturn = new System.Windows.Forms.Button();
+            this.BtnOrder = new System.Windows.Forms.Button();
+            this.PnlAllOrders = new System.Windows.Forms.Panel();
+            this.GrbReportRange = new System.Windows.Forms.GroupBox();
+            this.BtnReportSearch = new System.Windows.Forms.Button();
+            this.BtnExcel = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.DtpReportTo = new System.Windows.Forms.DateTimePicker();
+            this.DtpReportFrom = new System.Windows.Forms.DateTimePicker();
+            this.PnlPaymentInfo = new System.Windows.Forms.Panel();
+            this.BtnCancelReturn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BtnPayFine = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.RtbFinePrice = new System.Windows.Forms.RichTextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.DgvAllOrders = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,25 +110,13 @@
             this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TxbOrderSearch = new System.Windows.Forms.TextBox();
-            this.BtnOrderSearch = new System.Windows.Forms.Button();
+            this.BtnReturn = new System.Windows.Forms.Button();
+            this.BtnNewOrder = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.GrpSearch = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.LblReturn = new System.Windows.Forms.Label();
-            this.PnlPaymentInfo = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.BtnPayFine = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.RtbFinePrice = new System.Windows.Forms.RichTextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.PnlAllOrders = new System.Windows.Forms.Panel();
-            this.BtnOrder = new System.Windows.Forms.Button();
-            this.BtnExcel = new System.Windows.Forms.Button();
-            this.GrbReportRange = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.BtnOrderSearch = new System.Windows.Forms.Button();
+            this.TxbOrderSearch = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.PnlNewOrder.SuspendLayout();
             this.PnlOrderInfo.SuspendLayout();
@@ -123,10 +124,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.NupBookCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvBookSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCustomersSearch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).BeginInit();
-            this.PnlPaymentInfo.SuspendLayout();
             this.PnlAllOrders.SuspendLayout();
             this.GrbReportRange.SuspendLayout();
+            this.PnlPaymentInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).BeginInit();
+            this.GrpSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -224,17 +226,17 @@
             // PnlOrderInfo
             // 
             this.PnlOrderInfo.BackColor = System.Drawing.Color.Khaki;
+            this.PnlOrderInfo.Controls.Add(this.label12);
             this.PnlOrderInfo.Controls.Add(this.BtnCancelOrder);
             this.PnlOrderInfo.Controls.Add(this.label13);
             this.PnlOrderInfo.Controls.Add(this.DgvBasket);
-            this.PnlOrderInfo.Controls.Add(this.label12);
             this.PnlOrderInfo.Controls.Add(this.BtnCreateOrder);
             this.PnlOrderInfo.Controls.Add(this.label11);
             this.PnlOrderInfo.Controls.Add(this.RtbTotalPrice);
             this.PnlOrderInfo.Controls.Add(this.label10);
             this.PnlOrderInfo.Location = new System.Drawing.Point(32, 342);
             this.PnlOrderInfo.Name = "PnlOrderInfo";
-            this.PnlOrderInfo.Size = new System.Drawing.Size(632, 231);
+            this.PnlOrderInfo.Size = new System.Drawing.Size(622, 196);
             this.PnlOrderInfo.TabIndex = 25;
             this.PnlOrderInfo.Visible = false;
             // 
@@ -242,7 +244,7 @@
             // 
             this.BtnCancelOrder.BackColor = System.Drawing.Color.Gold;
             this.BtnCancelOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelOrder.Location = new System.Drawing.Point(434, 178);
+            this.BtnCancelOrder.Location = new System.Drawing.Point(413, 139);
             this.BtnCancelOrder.Name = "BtnCancelOrder";
             this.BtnCancelOrder.Size = new System.Drawing.Size(162, 39);
             this.BtnCancelOrder.TabIndex = 28;
@@ -254,7 +256,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(602, 89);
+            this.label13.Location = new System.Drawing.Point(581, 51);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 25);
             this.label13.TabIndex = 27;
@@ -272,9 +274,9 @@
             this.Column19,
             this.Column21,
             this.Column22});
-            this.DgvBasket.Location = new System.Drawing.Point(15, 55);
+            this.DgvBasket.Location = new System.Drawing.Point(11, 88);
             this.DgvBasket.Name = "DgvBasket";
-            this.DgvBasket.Size = new System.Drawing.Size(262, 103);
+            this.DgvBasket.Size = new System.Drawing.Size(264, 45);
             this.DgvBasket.TabIndex = 26;
             // 
             // Column18
@@ -298,20 +300,11 @@
             this.Column22.HeaderText = "Price";
             this.Column22.Name = "Column22";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 202);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(165, 13);
-            this.label12.TabIndex = 25;
-            this.label12.Text = "* Maximum 5 books can be taken";
-            // 
             // BtnCreateOrder
             // 
             this.BtnCreateOrder.BackColor = System.Drawing.Color.LightGreen;
             this.BtnCreateOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCreateOrder.Location = new System.Drawing.Point(434, 133);
+            this.BtnCreateOrder.Location = new System.Drawing.Point(413, 94);
             this.BtnCreateOrder.Name = "BtnCreateOrder";
             this.BtnCreateOrder.Size = new System.Drawing.Size(162, 39);
             this.BtnCreateOrder.TabIndex = 22;
@@ -333,7 +326,7 @@
             // RtbTotalPrice
             // 
             this.RtbTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RtbTotalPrice.Location = new System.Drawing.Point(434, 80);
+            this.RtbTotalPrice.Location = new System.Drawing.Point(413, 41);
             this.RtbTotalPrice.Name = "RtbTotalPrice";
             this.RtbTotalPrice.ReadOnly = true;
             this.RtbTotalPrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -345,7 +338,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(345, 96);
+            this.label10.Location = new System.Drawing.Point(324, 57);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(83, 16);
             this.label10.TabIndex = 23;
@@ -417,20 +410,23 @@
             // 
             // DtpNewDeadline
             // 
+            this.DtpNewDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DtpNewDeadline.Location = new System.Drawing.Point(305, 297);
-            this.DtpNewDeadline.MinDate = new System.DateTime(2020, 2, 16, 0, 0, 0, 0);
+            this.DtpNewDeadline.MinDate = new System.DateTime(2020, 2, 17, 0, 0, 0, 0);
             this.DtpNewDeadline.Name = "DtpNewDeadline";
             this.DtpNewDeadline.Size = new System.Drawing.Size(200, 20);
             this.DtpNewDeadline.TabIndex = 16;
             // 
             // DtpNewTaken
             // 
+            this.DtpNewTaken.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DtpNewTaken.Location = new System.Drawing.Point(32, 297);
-            this.DtpNewTaken.MinDate = new System.DateTime(2020, 2, 16, 18, 30, 20, 0);
+            this.DtpNewTaken.MaxDate = new System.DateTime(2020, 2, 17, 0, 0, 0, 0);
+            this.DtpNewTaken.MinDate = new System.DateTime(2020, 2, 17, 0, 0, 0, 0);
             this.DtpNewTaken.Name = "DtpNewTaken";
             this.DtpNewTaken.Size = new System.Drawing.Size(200, 20);
             this.DtpNewTaken.TabIndex = 15;
-            this.DtpNewTaken.Value = new System.DateTime(2020, 2, 16, 18, 30, 20, 0);
+            this.DtpNewTaken.Value = new System.DateTime(2020, 2, 17, 0, 0, 0, 0);
             // 
             // BtnBookSearch
             // 
@@ -637,39 +633,188 @@
             this.BtnLateReturn.UseVisualStyleBackColor = false;
             this.BtnLateReturn.Click += new System.EventHandler(this.BtnLateReturn_Click);
             // 
-            // BtnNewOrder
+            // BtnOrder
             // 
-            this.BtnNewOrder.BackColor = System.Drawing.Color.PaleGreen;
-            this.BtnNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNewOrder.Location = new System.Drawing.Point(824, 103);
-            this.BtnNewOrder.Name = "BtnNewOrder";
-            this.BtnNewOrder.Size = new System.Drawing.Size(160, 38);
-            this.BtnNewOrder.TabIndex = 1;
-            this.BtnNewOrder.Text = "New order";
-            this.BtnNewOrder.UseVisualStyleBackColor = false;
-            this.BtnNewOrder.Click += new System.EventHandler(this.BtnNewOrder_Click_1);
+            this.BtnOrder.BackColor = System.Drawing.Color.CadetBlue;
+            this.BtnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnOrder.Location = new System.Drawing.Point(543, 73);
+            this.BtnOrder.Name = "BtnOrder";
+            this.BtnOrder.Size = new System.Drawing.Size(160, 38);
+            this.BtnOrder.TabIndex = 27;
+            this.BtnOrder.Text = "Report";
+            this.BtnOrder.UseVisualStyleBackColor = false;
+            this.BtnOrder.Click += new System.EventHandler(this.BtnOrder_Click);
             // 
-            // LblAllOrders
+            // PnlAllOrders
             // 
-            this.LblAllOrders.AutoSize = true;
-            this.LblAllOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblAllOrders.Location = new System.Drawing.Point(22, 23);
-            this.LblAllOrders.Name = "LblAllOrders";
-            this.LblAllOrders.Size = new System.Drawing.Size(126, 29);
-            this.LblAllOrders.TabIndex = 4;
-            this.LblAllOrders.Text = "All orders";
+            this.PnlAllOrders.BackColor = System.Drawing.Color.CadetBlue;
+            this.PnlAllOrders.Controls.Add(this.GrpSearch);
+            this.PnlAllOrders.Controls.Add(this.GrbReportRange);
+            this.PnlAllOrders.Controls.Add(this.PnlPaymentInfo);
+            this.PnlAllOrders.Controls.Add(this.DgvAllOrders);
+            this.PnlAllOrders.Controls.Add(this.BtnReturn);
+            this.PnlAllOrders.Controls.Add(this.BtnNewOrder);
+            this.PnlAllOrders.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PnlAllOrders.Location = new System.Drawing.Point(12, 128);
+            this.PnlAllOrders.Name = "PnlAllOrders";
+            this.PnlAllOrders.Size = new System.Drawing.Size(1323, 673);
+            this.PnlAllOrders.TabIndex = 26;
             // 
-            // BtnReturn
+            // GrbReportRange
             // 
-            this.BtnReturn.BackColor = System.Drawing.Color.Gold;
-            this.BtnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReturn.Location = new System.Drawing.Point(824, 162);
-            this.BtnReturn.Name = "BtnReturn";
-            this.BtnReturn.Size = new System.Drawing.Size(160, 38);
-            this.BtnReturn.TabIndex = 6;
-            this.BtnReturn.Text = "Return book";
-            this.BtnReturn.UseVisualStyleBackColor = false;
-            this.BtnReturn.Click += new System.EventHandler(this.BtnReturn_Click);
+            this.GrbReportRange.Controls.Add(this.BtnReportSearch);
+            this.GrbReportRange.Controls.Add(this.BtnExcel);
+            this.GrbReportRange.Controls.Add(this.label18);
+            this.GrbReportRange.Controls.Add(this.label15);
+            this.GrbReportRange.Controls.Add(this.DtpReportTo);
+            this.GrbReportRange.Controls.Add(this.DtpReportFrom);
+            this.GrbReportRange.Location = new System.Drawing.Point(465, 0);
+            this.GrbReportRange.Name = "GrbReportRange";
+            this.GrbReportRange.Size = new System.Drawing.Size(676, 67);
+            this.GrbReportRange.TabIndex = 28;
+            this.GrbReportRange.TabStop = false;
+            this.GrbReportRange.Text = "Date";
+            this.GrbReportRange.Visible = false;
+            // 
+            // BtnReportSearch
+            // 
+            this.BtnReportSearch.Location = new System.Drawing.Point(534, 17);
+            this.BtnReportSearch.Name = "BtnReportSearch";
+            this.BtnReportSearch.Size = new System.Drawing.Size(75, 23);
+            this.BtnReportSearch.TabIndex = 10;
+            this.BtnReportSearch.Text = "Show";
+            this.BtnReportSearch.UseVisualStyleBackColor = true;
+            this.BtnReportSearch.Click += new System.EventHandler(this.BtnReportSearch_Click);
+            // 
+            // BtnExcel
+            // 
+            this.BtnExcel.BackColor = System.Drawing.Color.PaleGreen;
+            this.BtnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExcel.Image = ((System.Drawing.Image)(resources.GetObject("BtnExcel.Image")));
+            this.BtnExcel.Location = new System.Drawing.Point(615, 9);
+            this.BtnExcel.Name = "BtnExcel";
+            this.BtnExcel.Size = new System.Drawing.Size(50, 50);
+            this.BtnExcel.TabIndex = 27;
+            this.BtnExcel.UseVisualStyleBackColor = false;
+            this.BtnExcel.Click += new System.EventHandler(this.BtnExcel_Click_1);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(291, 24);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(27, 16);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "To";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(17, 24);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(43, 16);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "From";
+            // 
+            // DtpReportTo
+            // 
+            this.DtpReportTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpReportTo.Location = new System.Drawing.Point(328, 20);
+            this.DtpReportTo.Name = "DtpReportTo";
+            this.DtpReportTo.Size = new System.Drawing.Size(200, 20);
+            this.DtpReportTo.TabIndex = 1;
+            // 
+            // DtpReportFrom
+            // 
+            this.DtpReportFrom.CustomFormat = "dd.MM.yyy";
+            this.DtpReportFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpReportFrom.Location = new System.Drawing.Point(70, 22);
+            this.DtpReportFrom.Name = "DtpReportFrom";
+            this.DtpReportFrom.Size = new System.Drawing.Size(200, 20);
+            this.DtpReportFrom.TabIndex = 0;
+            // 
+            // PnlPaymentInfo
+            // 
+            this.PnlPaymentInfo.BackColor = System.Drawing.Color.Khaki;
+            this.PnlPaymentInfo.Controls.Add(this.BtnCancelReturn);
+            this.PnlPaymentInfo.Controls.Add(this.label1);
+            this.PnlPaymentInfo.Controls.Add(this.BtnPayFine);
+            this.PnlPaymentInfo.Controls.Add(this.label16);
+            this.PnlPaymentInfo.Controls.Add(this.RtbFinePrice);
+            this.PnlPaymentInfo.Controls.Add(this.label17);
+            this.PnlPaymentInfo.Location = new System.Drawing.Point(824, 203);
+            this.PnlPaymentInfo.Name = "PnlPaymentInfo";
+            this.PnlPaymentInfo.Size = new System.Drawing.Size(332, 215);
+            this.PnlPaymentInfo.TabIndex = 26;
+            this.PnlPaymentInfo.Visible = false;
+            // 
+            // BtnCancelReturn
+            // 
+            this.BtnCancelReturn.BackColor = System.Drawing.Color.Gold;
+            this.BtnCancelReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCancelReturn.Location = new System.Drawing.Point(106, 150);
+            this.BtnCancelReturn.Name = "BtnCancelReturn";
+            this.BtnCancelReturn.Size = new System.Drawing.Size(162, 39);
+            this.BtnCancelReturn.TabIndex = 28;
+            this.BtnCancelReturn.Text = "Cancel";
+            this.BtnCancelReturn.UseVisualStyleBackColor = false;
+            this.BtnCancelReturn.Click += new System.EventHandler(this.BtnCancelReturn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(274, 61);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(25, 25);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "$";
+            // 
+            // BtnPayFine
+            // 
+            this.BtnPayFine.BackColor = System.Drawing.Color.LightGreen;
+            this.BtnPayFine.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPayFine.Location = new System.Drawing.Point(106, 105);
+            this.BtnPayFine.Name = "BtnPayFine";
+            this.BtnPayFine.Size = new System.Drawing.Size(162, 39);
+            this.BtnPayFine.TabIndex = 22;
+            this.BtnPayFine.Text = "Submit";
+            this.BtnPayFine.UseVisualStyleBackColor = false;
+            this.BtnPayFine.Click += new System.EventHandler(this.BtnPayFine_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(12, 11);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(163, 18);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Payment information";
+            // 
+            // RtbFinePrice
+            // 
+            this.RtbFinePrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RtbFinePrice.Location = new System.Drawing.Point(106, 52);
+            this.RtbFinePrice.Name = "RtbFinePrice";
+            this.RtbFinePrice.ReadOnly = true;
+            this.RtbFinePrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RtbFinePrice.Size = new System.Drawing.Size(162, 47);
+            this.RtbFinePrice.TabIndex = 24;
+            this.RtbFinePrice.Text = "";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(17, 68);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(77, 16);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "Fine price";
             // 
             // DgvAllOrders
             // 
@@ -689,7 +834,7 @@
             this.Column20,
             this.Column23,
             this.Column25});
-            this.DgvAllOrders.Location = new System.Drawing.Point(27, 103);
+            this.DgvAllOrders.Location = new System.Drawing.Point(28, 73);
             this.DgvAllOrders.Name = "DgvAllOrders";
             this.DgvAllOrders.Size = new System.Drawing.Size(784, 448);
             this.DgvAllOrders.TabIndex = 5;
@@ -752,214 +897,77 @@
             this.Column25.Name = "Column25";
             this.Column25.Visible = false;
             // 
-            // TxbOrderSearch
+            // BtnReturn
             // 
-            this.TxbOrderSearch.Location = new System.Drawing.Point(107, 71);
-            this.TxbOrderSearch.Name = "TxbOrderSearch";
-            this.TxbOrderSearch.Size = new System.Drawing.Size(240, 20);
-            this.TxbOrderSearch.TabIndex = 8;
+            this.BtnReturn.BackColor = System.Drawing.Color.Gold;
+            this.BtnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnReturn.Location = new System.Drawing.Point(824, 133);
+            this.BtnReturn.Name = "BtnReturn";
+            this.BtnReturn.Size = new System.Drawing.Size(160, 38);
+            this.BtnReturn.TabIndex = 6;
+            this.BtnReturn.Text = "Return book";
+            this.BtnReturn.UseVisualStyleBackColor = false;
+            this.BtnReturn.Click += new System.EventHandler(this.BtnReturn_Click_1);
             // 
-            // BtnOrderSearch
+            // BtnNewOrder
             // 
-            this.BtnOrderSearch.Location = new System.Drawing.Point(363, 69);
-            this.BtnOrderSearch.Name = "BtnOrderSearch";
-            this.BtnOrderSearch.Size = new System.Drawing.Size(75, 23);
-            this.BtnOrderSearch.TabIndex = 9;
-            this.BtnOrderSearch.Text = "Search";
-            this.BtnOrderSearch.UseVisualStyleBackColor = true;
-            this.BtnOrderSearch.Click += new System.EventHandler(this.BtnOrderSearch_Click_1);
+            this.BtnNewOrder.BackColor = System.Drawing.Color.PaleGreen;
+            this.BtnNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNewOrder.Location = new System.Drawing.Point(824, 74);
+            this.BtnNewOrder.Name = "BtnNewOrder";
+            this.BtnNewOrder.Size = new System.Drawing.Size(160, 38);
+            this.BtnNewOrder.TabIndex = 1;
+            this.BtnNewOrder.Text = "New order";
+            this.BtnNewOrder.UseVisualStyleBackColor = false;
+            this.BtnNewOrder.Click += new System.EventHandler(this.BtnNewOrder_Click_2);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(12, 63);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(89, 13);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Selected book";
+            // 
+            // GrpSearch
+            // 
+            this.GrpSearch.Controls.Add(this.TxbOrderSearch);
+            this.GrpSearch.Controls.Add(this.BtnOrderSearch);
+            this.GrpSearch.Controls.Add(this.label14);
+            this.GrpSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GrpSearch.Location = new System.Drawing.Point(27, 0);
+            this.GrpSearch.Name = "GrpSearch";
+            this.GrpSearch.Size = new System.Drawing.Size(433, 67);
+            this.GrpSearch.TabIndex = 29;
+            this.GrpSearch.TabStop = false;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(24, 73);
+            this.label14.Location = new System.Drawing.Point(5, 23);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(80, 13);
             this.label14.TabIndex = 10;
             this.label14.Text = "Customer name";
             // 
-            // LblReturn
+            // BtnOrderSearch
             // 
-            this.LblReturn.AutoSize = true;
-            this.LblReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblReturn.Location = new System.Drawing.Point(17, 23);
-            this.LblReturn.Name = "LblReturn";
-            this.LblReturn.Size = new System.Drawing.Size(131, 29);
-            this.LblReturn.TabIndex = 11;
-            this.LblReturn.Text = "All returns";
-            this.LblReturn.Visible = false;
+            this.BtnOrderSearch.Location = new System.Drawing.Point(344, 19);
+            this.BtnOrderSearch.Name = "BtnOrderSearch";
+            this.BtnOrderSearch.Size = new System.Drawing.Size(75, 23);
+            this.BtnOrderSearch.TabIndex = 9;
+            this.BtnOrderSearch.Text = "Search";
+            this.BtnOrderSearch.UseVisualStyleBackColor = true;
+            this.BtnOrderSearch.Click += new System.EventHandler(this.BtnOrderSearch_Click);
             // 
-            // PnlPaymentInfo
+            // TxbOrderSearch
             // 
-            this.PnlPaymentInfo.BackColor = System.Drawing.Color.Khaki;
-            this.PnlPaymentInfo.Controls.Add(this.button1);
-            this.PnlPaymentInfo.Controls.Add(this.label1);
-            this.PnlPaymentInfo.Controls.Add(this.BtnPayFine);
-            this.PnlPaymentInfo.Controls.Add(this.label16);
-            this.PnlPaymentInfo.Controls.Add(this.RtbFinePrice);
-            this.PnlPaymentInfo.Controls.Add(this.label17);
-            this.PnlPaymentInfo.Location = new System.Drawing.Point(823, 227);
-            this.PnlPaymentInfo.Name = "PnlPaymentInfo";
-            this.PnlPaymentInfo.Size = new System.Drawing.Size(332, 215);
-            this.PnlPaymentInfo.TabIndex = 26;
-            this.PnlPaymentInfo.Visible = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Gold;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(106, 150);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 39);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(274, 61);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 25);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "$";
-            // 
-            // BtnPayFine
-            // 
-            this.BtnPayFine.BackColor = System.Drawing.Color.LightGreen;
-            this.BtnPayFine.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPayFine.Location = new System.Drawing.Point(106, 105);
-            this.BtnPayFine.Name = "BtnPayFine";
-            this.BtnPayFine.Size = new System.Drawing.Size(162, 39);
-            this.BtnPayFine.TabIndex = 22;
-            this.BtnPayFine.Text = "Submit";
-            this.BtnPayFine.UseVisualStyleBackColor = false;
-            this.BtnPayFine.Click += new System.EventHandler(this.BtnPayFine_Click_1);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(12, 11);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(163, 18);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Payment information";
-            // 
-            // RtbFinePrice
-            // 
-            this.RtbFinePrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RtbFinePrice.Location = new System.Drawing.Point(106, 52);
-            this.RtbFinePrice.Name = "RtbFinePrice";
-            this.RtbFinePrice.ReadOnly = true;
-            this.RtbFinePrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.RtbFinePrice.Size = new System.Drawing.Size(162, 47);
-            this.RtbFinePrice.TabIndex = 24;
-            this.RtbFinePrice.Text = "";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(17, 68);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(83, 16);
-            this.label17.TabIndex = 23;
-            this.label17.Text = "Total price";
-            // 
-            // PnlAllOrders
-            // 
-            this.PnlAllOrders.BackColor = System.Drawing.Color.CadetBlue;
-            this.PnlAllOrders.Controls.Add(this.GrbReportRange);
-            this.PnlAllOrders.Controls.Add(this.BtnExcel);
-            this.PnlAllOrders.Controls.Add(this.PnlPaymentInfo);
-            this.PnlAllOrders.Controls.Add(this.LblReturn);
-            this.PnlAllOrders.Controls.Add(this.label14);
-            this.PnlAllOrders.Controls.Add(this.BtnOrderSearch);
-            this.PnlAllOrders.Controls.Add(this.TxbOrderSearch);
-            this.PnlAllOrders.Controls.Add(this.DgvAllOrders);
-            this.PnlAllOrders.Controls.Add(this.BtnReturn);
-            this.PnlAllOrders.Controls.Add(this.LblAllOrders);
-            this.PnlAllOrders.Controls.Add(this.BtnNewOrder);
-            this.PnlAllOrders.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PnlAllOrders.Location = new System.Drawing.Point(12, 122);
-            this.PnlAllOrders.Name = "PnlAllOrders";
-            this.PnlAllOrders.Size = new System.Drawing.Size(1321, 626);
-            this.PnlAllOrders.TabIndex = 11;
-            // 
-            // BtnOrder
-            // 
-            this.BtnOrder.BackColor = System.Drawing.Color.CadetBlue;
-            this.BtnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnOrder.Location = new System.Drawing.Point(543, 73);
-            this.BtnOrder.Name = "BtnOrder";
-            this.BtnOrder.Size = new System.Drawing.Size(160, 38);
-            this.BtnOrder.TabIndex = 27;
-            this.BtnOrder.Text = "Report";
-            this.BtnOrder.UseVisualStyleBackColor = false;
-            this.BtnOrder.Click += new System.EventHandler(this.BtnOrder_Click);
-            // 
-            // BtnExcel
-            // 
-            this.BtnExcel.BackColor = System.Drawing.Color.PaleGreen;
-            this.BtnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnExcel.Location = new System.Drawing.Point(823, 24);
-            this.BtnExcel.Name = "BtnExcel";
-            this.BtnExcel.Size = new System.Drawing.Size(160, 62);
-            this.BtnExcel.TabIndex = 27;
-            this.BtnExcel.Text = "Report to Excel";
-            this.BtnExcel.UseVisualStyleBackColor = false;
-            this.BtnExcel.Visible = false;
-            // 
-            // GrbReportRange
-            // 
-            this.GrbReportRange.Controls.Add(this.label18);
-            this.GrbReportRange.Controls.Add(this.label15);
-            this.GrbReportRange.Controls.Add(this.dateTimePicker2);
-            this.GrbReportRange.Controls.Add(this.dateTimePicker1);
-            this.GrbReportRange.Location = new System.Drawing.Point(478, 9);
-            this.GrbReportRange.Name = "GrbReportRange";
-            this.GrbReportRange.Size = new System.Drawing.Size(333, 85);
-            this.GrbReportRange.TabIndex = 28;
-            this.GrbReportRange.TabStop = false;
-            this.GrbReportRange.Text = "groupBox1";
-            this.GrbReportRange.Visible = false;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(87, 20);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 0;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(87, 53);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 1;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(34, 22);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(43, 16);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "From";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(50, 57);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(27, 16);
-            this.label18.TabIndex = 3;
-            this.label18.Text = "To";
+            this.TxbOrderSearch.Location = new System.Drawing.Point(88, 21);
+            this.TxbOrderSearch.Name = "TxbOrderSearch";
+            this.TxbOrderSearch.Size = new System.Drawing.Size(240, 20);
+            this.TxbOrderSearch.TabIndex = 8;
             // 
             // Dashboard
             // 
@@ -967,10 +975,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ClientSize = new System.Drawing.Size(1333, 745);
+            this.Controls.Add(this.PnlAllOrders);
             this.Controls.Add(this.BtnOrder);
             this.Controls.Add(this.BtnLateReturn);
             this.Controls.Add(this.BtnAllReturns);
-            this.Controls.Add(this.PnlAllOrders);
             this.Controls.Add(this.PnlNewOrder);
             this.Controls.Add(this.BtnAllOrders);
             this.Controls.Add(this.menuStrip1);
@@ -990,13 +998,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.NupBookCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvBookSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCustomersSearch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).EndInit();
-            this.PnlPaymentInfo.ResumeLayout(false);
-            this.PnlPaymentInfo.PerformLayout();
             this.PnlAllOrders.ResumeLayout(false);
-            this.PnlAllOrders.PerformLayout();
             this.GrbReportRange.ResumeLayout(false);
             this.GrbReportRange.PerformLayout();
+            this.PnlPaymentInfo.ResumeLayout(false);
+            this.PnlPaymentInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).EndInit();
+            this.GrpSearch.ResumeLayout(false);
+            this.GrpSearch.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1019,7 +1028,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button BtnCreateOrder;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.RichTextBox RtbTotalPrice;
@@ -1057,9 +1065,21 @@
         private System.Windows.Forms.Button BtnAllReturns;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button BtnLateReturn;
-        private System.Windows.Forms.Button BtnNewOrder;
-        private System.Windows.Forms.Label LblAllOrders;
-        private System.Windows.Forms.Button BtnReturn;
+        private System.Windows.Forms.Button BtnOrder;
+        private System.Windows.Forms.Panel PnlAllOrders;
+        private System.Windows.Forms.GroupBox GrbReportRange;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DateTimePicker DtpReportTo;
+        private System.Windows.Forms.DateTimePicker DtpReportFrom;
+        private System.Windows.Forms.Button BtnExcel;
+        private System.Windows.Forms.Panel PnlPaymentInfo;
+        private System.Windows.Forms.Button BtnCancelReturn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BtnPayFine;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.RichTextBox RtbFinePrice;
+        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridView DgvAllOrders;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -1072,24 +1092,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column25;
+        private System.Windows.Forms.Button BtnReturn;
+        private System.Windows.Forms.Button BtnNewOrder;
+        private System.Windows.Forms.Button BtnReportSearch;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox GrpSearch;
         private System.Windows.Forms.TextBox TxbOrderSearch;
         private System.Windows.Forms.Button BtnOrderSearch;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label LblReturn;
-        private System.Windows.Forms.Panel PnlPaymentInfo;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button BtnPayFine;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.RichTextBox RtbFinePrice;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Panel PnlAllOrders;
-        private System.Windows.Forms.Button BtnOrder;
-        private System.Windows.Forms.GroupBox GrbReportRange;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button BtnExcel;
     }
 }

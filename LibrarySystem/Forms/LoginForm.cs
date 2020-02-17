@@ -27,33 +27,30 @@ namespace LibrarySystem.Forms
 
         private void BtnSignIn_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(TxbEmail.Text))
+            if (string.IsNullOrEmpty(TxbEmail.Text) || string.IsNullOrEmpty(TxbPassword.Text))
             {
-                MessageBox.Show("Please enter Email");
-                return;
-            } 
-            if(string.IsNullOrEmpty(TxbEmail.Text))
-            {
-                MessageBox.Show("Please enter Password");
+                MessageBox.Show("Please enter Email and Password", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (_context.Users.Any(t => t.Email != TxbEmail.Text ||
-                                        t.Password != TxbPassword.Text))
-            {
-                MessageBox.Show("Wrong Email or Password","error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                return;
-            }
-            User user = _context.Users.FirstOrDefault(u => u.Email == TxbEmail.Text && 
+
+
+            User user = _context.Users.FirstOrDefault(u => u.Email == TxbEmail.Text &&
                                                            u.Password == TxbPassword.Text);
-           
-            Dashboard dashboard = new Dashboard();
 
-            dashboard.ShowDialog();
+            if (user != null && user.Status == true)
+            {
+                Dashboard dashboard = new Dashboard();
+                this.Hide();
+                dashboard.Show();
+                return;
 
-            this.Hide();
-            return;
-           
- 
+            }
+            MessageBox.Show("Wrong Email or Password", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
+
     }
-}
+        
+     
+    }
+

@@ -39,10 +39,10 @@
             this.LblErr = new System.Windows.Forms.Label();
             this.TxbEditGenre = new System.Windows.Forms.TextBox();
             this.PnlNewGenre = new System.Windows.Forms.Panel();
+            this.LblErr1 = new System.Windows.Forms.Label();
             this.BtnSubmit = new System.Windows.Forms.Button();
             this.TxbNewGenre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.LblErr1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllGenres)).BeginInit();
             this.PnlDeleteEdit.SuspendLayout();
             this.PnlNewGenre.SuspendLayout();
@@ -154,6 +154,17 @@
             this.PnlNewGenre.Size = new System.Drawing.Size(170, 128);
             this.PnlNewGenre.TabIndex = 8;
             // 
+            // LblErr1
+            // 
+            this.LblErr1.AutoSize = true;
+            this.LblErr1.ForeColor = System.Drawing.Color.Red;
+            this.LblErr1.Location = new System.Drawing.Point(13, 56);
+            this.LblErr1.Name = "LblErr1";
+            this.LblErr1.Size = new System.Drawing.Size(96, 13);
+            this.LblErr1.TabIndex = 9;
+            this.LblErr1.Text = "* Please fill the row";
+            this.LblErr1.Visible = false;
+            // 
             // BtnSubmit
             // 
             this.BtnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -182,17 +193,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "New Genre";
             // 
-            // LblErr1
-            // 
-            this.LblErr1.AutoSize = true;
-            this.LblErr1.ForeColor = System.Drawing.Color.Red;
-            this.LblErr1.Location = new System.Drawing.Point(13, 56);
-            this.LblErr1.Name = "LblErr1";
-            this.LblErr1.Size = new System.Drawing.Size(96, 13);
-            this.LblErr1.TabIndex = 9;
-            this.LblErr1.Text = "* Please fill the row";
-            this.LblErr1.Visible = false;
-            // 
             // GenreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +204,7 @@
             this.Controls.Add(this.DgvAllGenres);
             this.Controls.Add(this.BtnNewGenre);
             this.Name = "GenreForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GenreForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllGenres)).EndInit();

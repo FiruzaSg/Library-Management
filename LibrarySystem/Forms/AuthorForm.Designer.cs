@@ -36,13 +36,13 @@
             this.BtnDeleteAuthor = new System.Windows.Forms.Button();
             this.BtnEditAuthor = new System.Windows.Forms.Button();
             this.PnlDeleteEdit = new System.Windows.Forms.Panel();
+            this.LblErr = new System.Windows.Forms.Label();
             this.TxbAuthorEdit = new System.Windows.Forms.TextBox();
             this.PnlNewAuthor = new System.Windows.Forms.Panel();
+            this.LblErr1 = new System.Windows.Forms.Label();
             this.BtnCreateAuthor = new System.Windows.Forms.Button();
             this.TxbNewAuthor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.LblErr = new System.Windows.Forms.Label();
-            this.LblErr1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllAuthors)).BeginInit();
             this.PnlDeleteEdit.SuspendLayout();
             this.PnlNewAuthor.SuspendLayout();
@@ -124,6 +124,17 @@
             this.PnlDeleteEdit.Size = new System.Drawing.Size(334, 112);
             this.PnlDeleteEdit.TabIndex = 6;
             // 
+            // LblErr
+            // 
+            this.LblErr.AutoSize = true;
+            this.LblErr.ForeColor = System.Drawing.Color.Red;
+            this.LblErr.Location = new System.Drawing.Point(13, 90);
+            this.LblErr.Name = "LblErr";
+            this.LblErr.Size = new System.Drawing.Size(96, 13);
+            this.LblErr.TabIndex = 7;
+            this.LblErr.Text = "* Please fill the row";
+            this.LblErr.Visible = false;
+            // 
             // TxbAuthorEdit
             // 
             this.TxbAuthorEdit.Location = new System.Drawing.Point(13, 63);
@@ -141,6 +152,17 @@
             this.PnlNewAuthor.Name = "PnlNewAuthor";
             this.PnlNewAuthor.Size = new System.Drawing.Size(204, 157);
             this.PnlNewAuthor.TabIndex = 7;
+            // 
+            // LblErr1
+            // 
+            this.LblErr1.AutoSize = true;
+            this.LblErr1.ForeColor = System.Drawing.Color.Red;
+            this.LblErr1.Location = new System.Drawing.Point(24, 58);
+            this.LblErr1.Name = "LblErr1";
+            this.LblErr1.Size = new System.Drawing.Size(96, 13);
+            this.LblErr1.TabIndex = 8;
+            this.LblErr1.Text = "* Please fill the row";
+            this.LblErr1.Visible = false;
             // 
             // BtnCreateAuthor
             // 
@@ -170,28 +192,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "New Author";
             // 
-            // LblErr
-            // 
-            this.LblErr.AutoSize = true;
-            this.LblErr.ForeColor = System.Drawing.Color.Red;
-            this.LblErr.Location = new System.Drawing.Point(13, 90);
-            this.LblErr.Name = "LblErr";
-            this.LblErr.Size = new System.Drawing.Size(96, 13);
-            this.LblErr.TabIndex = 7;
-            this.LblErr.Text = "* Please fill the row";
-            this.LblErr.Visible = false;
-            // 
-            // LblErr1
-            // 
-            this.LblErr1.AutoSize = true;
-            this.LblErr1.ForeColor = System.Drawing.Color.Red;
-            this.LblErr1.Location = new System.Drawing.Point(24, 58);
-            this.LblErr1.Name = "LblErr1";
-            this.LblErr1.Size = new System.Drawing.Size(96, 13);
-            this.LblErr1.TabIndex = 8;
-            this.LblErr1.Text = "* Please fill the row";
-            this.LblErr1.Visible = false;
-            // 
             // AuthorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,6 +203,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DgvAllAuthors);
             this.Name = "AuthorForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AuthorForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllAuthors)).EndInit();

@@ -51,6 +51,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.PnlCreateUser = new System.Windows.Forms.Panel();
+            this.BtnClose = new System.Windows.Forms.Button();
             this.TxbPhone = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.BtnCreateUser = new System.Windows.Forms.Button();
@@ -60,7 +61,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.TxbFullname = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.BtnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllUsers)).BeginInit();
             this.PnlDeleteEdit.SuspendLayout();
             this.PnlCreateUser.SuspendLayout();
@@ -285,6 +285,16 @@
             this.PnlCreateUser.TabIndex = 8;
             this.PnlCreateUser.Visible = false;
             // 
+            // BtnClose
+            // 
+            this.BtnClose.Location = new System.Drawing.Point(462, 3);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.Size = new System.Drawing.Size(26, 23);
+            this.BtnClose.TabIndex = 18;
+            this.BtnClose.Text = "X";
+            this.BtnClose.UseVisualStyleBackColor = true;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
             // TxbPhone
             // 
             this.TxbPhone.Location = new System.Drawing.Point(90, 71);
@@ -360,16 +370,6 @@
             this.label9.TabIndex = 9;
             this.label9.Text = "Full Name";
             // 
-            // BtnClose
-            // 
-            this.BtnClose.Location = new System.Drawing.Point(462, 3);
-            this.BtnClose.Name = "BtnClose";
-            this.BtnClose.Size = new System.Drawing.Size(26, 23);
-            this.BtnClose.TabIndex = 18;
-            this.BtnClose.Text = "X";
-            this.BtnClose.UseVisualStyleBackColor = true;
-            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,6 +380,7 @@
             this.Controls.Add(this.DgvAllUsers);
             this.Controls.Add(this.BtnNewUser);
             this.Name = "UserForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UserForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllUsers)).EndInit();

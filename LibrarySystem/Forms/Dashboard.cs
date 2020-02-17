@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,8 @@ using System.Windows.Forms;
 using LibrarySystem.Forms;
 using LibrarySystem.Data;
 using LibrarySystem.Models;
+using ClosedXML.Excel;
+using System.IO;
 
 
 namespace LibrarySystem.Forms
@@ -35,7 +38,7 @@ namespace LibrarySystem.Forms
 
         #region Fill and Clear methods
 
-       
+
         private void FillPassiveOrders() // Fills closed orders to datagridview
         {
             var Orders = _context.Orders.Include("Book").Include("Customer")
@@ -49,23 +52,23 @@ namespace LibrarySystem.Forms
                                       item.Customer.Surname,
                                       item.Book.Name,
                                       item.BookCount,
-                                      item.TakenAt,
-                                      item.Deadline,
+                                      item.TakenAt.ToString("dd.MM.yyyy"),
+                                      item.Deadline.ToString("dd.MM.yyyy"),
                                       item.Price,
                                       item.FinePrice,
-                                      item.IsOpen ? "Active" : "Passive",
+                                      item.IsOpen ? "Open" : "Closed",
                                       item.BookId
                                      );
             }
-        } 
+        }
 
-       
+
         private void FillActiveOrders() // Fills opened orders to datagridview
         {
             var Orders = _context.Orders.Include("Book").Include("Customer")
-                                                .Where(c => c.IsOpen ==true)
+                                                .Where(c => c.IsOpen == true)
                                                 .ToList();
-            
+
             foreach (var item in Orders)
             {
                 DgvAllOrders.Rows.Add(item.Id,
@@ -73,13 +76,13 @@ namespace LibrarySystem.Forms
                                       item.Customer.Surname,
                                       item.Book.Name,
                                       item.BookCount,
-                                      item.TakenAt,
-                                      item.Deadline,
+                                      item.TakenAt.ToString("dd.MM.yyyy"),
+                                      item.Deadline.ToString("dd.MM.yyyy"),
                                       item.Price,
                                       item.FinePrice,
-                                      item.IsOpen ? "Active" : "Passive",
+                                      item.IsOpen ? "Open" : "Closed",
                                       item.BookId
-                                     ) ;
+                                     );
 
             }
         }
@@ -94,11 +97,11 @@ namespace LibrarySystem.Forms
                                       item.Customer.Surname,
                                       item.Book.Name,
                                       item.BookCount,
-                                      item.TakenAt,
-                                      item.Deadline,
+                                      item.TakenAt.ToString("dd.MM.yyyy"),
+                                      item.Deadline.ToString("dd.MM.yyyy"),
                                       item.Price,
                                       item.FinePrice,
-                                      item.IsOpen ? "Active" : "Passive",
+                                      item.IsOpen ? "Open" : "Closed",
                                       item.BookId
                                      );
 
@@ -106,10 +109,10 @@ namespace LibrarySystem.Forms
 
         }
 
-            private void FillLateOrders()  // Fills late orders to datagridview
+        private void FillLateOrders()  // Fills late orders to datagridview
         {
             var Orders = _context.Orders.Include("Book").Include("Customer")
-                                              .Where(c => c.Deadline < DateTime.Now && c.IsOpen == true)
+                                              .Where(c => c.Deadline.Day < DateTime.Now.Day && c.IsOpen == true)
                                               .ToList();
 
             foreach (var item in Orders)
@@ -119,17 +122,17 @@ namespace LibrarySystem.Forms
                                       item.Customer.Surname,
                                       item.Book.Name,
                                       item.BookCount,
-                                      item.TakenAt,
-                                      item.Deadline,
+                                      item.TakenAt.ToString("dd.MM.yyyy"),
+                                      item.Deadline.ToString("dd.MM.yyyy"),
                                       item.Price,
                                       item.FinePrice,
-                                      item.IsOpen ? "Active" : "Passive",
+                                      item.IsOpen ? "Open" : "Closed",
                                       item.BookId
                                      );
             }
         }
 
-        
+
         private void FillCustomersSearch() // Fills customers to datagridview
         {
 
@@ -146,7 +149,7 @@ namespace LibrarySystem.Forms
             }
         }
 
-       
+
         public void FillBooksSearch()  // Fills late books to datagridview
         {
 
@@ -178,7 +181,7 @@ namespace LibrarySystem.Forms
                                price
                                );
 
-           
+
 
         }
         private void UpdateContext()
@@ -186,7 +189,7 @@ namespace LibrarySystem.Forms
             _context = new LibraryDbContext();
         }
 
-       
+
         public void ClearBooks()
         {
             DgvBookSearch.Rows.Clear();
@@ -201,7 +204,7 @@ namespace LibrarySystem.Forms
 
         #region Events and Actions
 
-        
+
         private void BtnBookForm_Click(object sender, EventArgs e) //Opens book form for adding,editin,deleting book
         {
             BookForm createBook = new BookForm();
@@ -219,7 +222,7 @@ namespace LibrarySystem.Forms
 
         private void DgvAllOrders_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-           
+
             try
             {
                 int id = Convert.ToInt32(DgvAllOrders.Rows[e.RowIndex].Cells[0].Value.ToString());
@@ -246,7 +249,7 @@ namespace LibrarySystem.Forms
             customersForm.ShowDialog();
         }
 
-        private void BtnNewOrder_Click(object sender, EventArgs e) //Opens for creating order
+        private void BtnNewOrder_Click_2(object sender, EventArgs e) //Opens for creating order
         {
             PnlNewOrder.Visible = true;
             PnlAllOrders.Visible = false;
@@ -262,12 +265,12 @@ namespace LibrarySystem.Forms
             PnlNewOrder.Visible = false;
             BtnNewOrder.Visible = true;
             BtnReturn.Visible = true;
-            LblAllOrders.Visible = true;
-            LblReturn.Visible = false;
-            
+            GrpSearch.Show();
+            GrbReportRange.Hide();
+            PnlPaymentInfo.Hide();
         }
 
-  
+
 
 
         private void DgvCustomersSearch_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -365,7 +368,7 @@ namespace LibrarySystem.Forms
                                             item.Count
                                             );
             }
-            
+
             TxbBookSearch.Clear();
         }
 
@@ -380,7 +383,7 @@ namespace LibrarySystem.Forms
 
         #endregion
 
-        private void BtnOrderSearch_Click_1(object sender, EventArgs e)
+        private void BtnOrderSearch_Click(object sender, EventArgs e)
         {
             DgvAllOrders.Rows.Clear();
             string searchText = TxbOrderSearch.Text.Trim();
@@ -404,18 +407,18 @@ namespace LibrarySystem.Forms
                                       item.Customer.Surname,
                                       item.Book.Name,
                                       item.BookCount,
-                                      item.TakenAt,
-                                      item.Deadline,
+                                      item.TakenAt.ToString("dd.MM.yyyy"),
+                                      item.Deadline.ToString("dd.MM.yyyy"),
                                       item.Price,
-                                      item.IsOpen ? "Active" : "Passive");
+                                      item.IsOpen ? "Open" : "Closed");
             }
 
-            
+
 
 
         }
 
-       
+
 
         private void BtnNewOrder_Click_1(object sender, EventArgs e)
         {
@@ -435,7 +438,7 @@ namespace LibrarySystem.Forms
                 return;
             }
 
-            if(_selectedBook.Count < NupBookCount.Value)
+            if (_selectedBook.Count < NupBookCount.Value)
             {
                 MessageBox.Show("No available books", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -450,7 +453,7 @@ namespace LibrarySystem.Forms
             FillBasket();
             TxbCustomerSearch.Clear();
             TxbBookSearch.Clear();
-            
+
         }
 
         private void BtnCreateOrder_Click_1(object sender, EventArgs e)
@@ -493,58 +496,71 @@ namespace LibrarySystem.Forms
         }
 
         // Return book
-        private void BtnReturn_Click(object sender, EventArgs e)
+        private void BtnReturn_Click_1(object sender, EventArgs e)
         {
-
+                 
             if (_selectedOrder == null)
             {
-                MessageBox.Show("Please select order to return","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Please select order to return", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-           
-            decimal Percent = 0.1M;
-            decimal FinePrice = _selectedOrder.Price * ((DateTime.Now - _selectedOrder.Deadline).Days) * Percent;
-            RtbFinePrice.Text = FinePrice.ToString();
-            PnlPaymentInfo.Visible = true;
-            
+            decimal Percent = 0.005M;
+            int CurrentDay = Convert.ToInt32(DateTime.Today.ToString("dd"));
 
-            
+            decimal FinePrice = _selectedOrder.Price * (CurrentDay - _selectedOrder.Deadline.Day) * Percent;
+
+
+            if ((CurrentDay - _selectedOrder.Deadline.Day) <= 0)
+            {
+                FinePrice = 0;
+            }
+            RtbFinePrice.Text = FinePrice.ToString();
+
+            PnlPaymentInfo.Show();
+
+
+
         }
 
         // Inserts AllReturns to Datagridview
         private void BtnAllReturns_Click(object sender, EventArgs e)
         {
-            
+
             PnlNewOrder.Visible = false;
             PnlAllOrders.Visible = true;
             DgvAllOrders.Rows.Clear();
             FillPassiveOrders();
-            LblAllOrders.Visible = false;
-            LblReturn.Visible = true;
             BtnReturn.Visible = false;
+            GrpSearch.Hide();
+            GrbReportRange.Hide();
+            PnlPaymentInfo.Hide();
+
         }
 
         //Inserts LateReturns to Datagridview
         private void BtnLateReturn_Click(object sender, EventArgs e)
         {
-            
+
             DgvAllOrders.Rows.Clear();
             FillLateOrders();
             GrbReportRange.Hide();
+            GrpSearch.Hide();
             BtnReturn.Visible = true;
+            PnlPaymentInfo.Hide();
         }
 
         //Shows fine for late return
-        private void BtnPayFine_Click_1(object sender, EventArgs e)
+        private void BtnPayFine_Click(object sender, EventArgs e)
         {
-            
-             DialogResult r = MessageBox.Show("Are you sure?", "Book return", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            DialogResult r = MessageBox.Show("Are you sure?", "Book return", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (r == DialogResult.Yes)
             {
-                
 
-                if(_selectedOrder.Deadline < DateTime.Now)
+
+                if (_selectedOrder.Deadline < DateTime.Now)
                 {
 
                 }
@@ -553,7 +569,7 @@ namespace LibrarySystem.Forms
 
                 _returnBook.Count += _selectedOrder.BookCount;
                 _selectedOrder.FinePrice = Convert.ToDecimal(RtbFinePrice.Text);
-                
+
                 _context.SaveChanges();
                 ClearOrders();
                 FillLateOrders();
@@ -564,20 +580,98 @@ namespace LibrarySystem.Forms
                 return;
 
             }
-            
+
         }
 
         private void BtnOrder_Click(object sender, EventArgs e)
         {
-            
-            
+
+
+
             DgvAllOrders.Rows.Clear();
             FillAllOrders();
-            BtnExcel.Show();
+            GrpSearch.Hide();
             GrbReportRange.Show();
             BtnNewOrder.Hide();
             BtnReturn.Hide();
-        }
-    }
+            PnlPaymentInfo.Hide();
 
+        }
+
+        private void BtnExcel_Click_1(object sender, EventArgs e)
+        {
+            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var from = DtpReportFrom.Value;
+            var to = DtpReportTo.Value;
+
+            string path = $"{desktop}/Report-{from.Day}-{from.Month}-{from.Year}--{to.Day}-{to.Month}-{to.Year}.csv";
+
+
+            try
+            {
+                var orders = _context.Orders.Where(o => o.TakenAt >= from && o.TakenAt <= to).ToList();
+
+                using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+                {
+                    string header = "Name,Surname,Book,Count,Taken at, Deadline, Price, Fine, Status";
+                    sw.WriteLine(header);
+                    foreach (Order o in orders)
+                    {
+                        string status = o.IsOpen ? "Open" : "Closed";
+                        string repr = $"" +
+                            $"{o.Customer.Name}," +
+                            $"{o.Customer.Surname}," +
+                            $"{o.Book.Name}," +
+                            $"{o.BookCount}," +
+                            $"{o.TakenAt.ToString("dd.MM.yyyy")}," +
+                            $"{o.Deadline.ToString("dd.MM.yyyy")}," +
+                            $"{o.Price}," +
+                            $"{o.FinePrice}," +
+                            $"{status}";
+                        sw.WriteLine(repr);
+                    }
+                }
+                MessageBox.Show("Excel file was created");
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
+        }
+
+        private void BtnReportSearch_Click(object sender, EventArgs e)
+        {
+            DgvAllOrders.Rows.Clear();
+            var from = DtpReportFrom.Value;
+            var to = DtpReportTo.Value;
+            var orders = _context.Orders.Where(o => o.TakenAt >= from && o.TakenAt <= to).ToList();
+
+            foreach (var item in orders)
+            {
+                DgvAllOrders.Rows.Add(item.Id,
+                                      item.Customer.Name,
+                                      item.Customer.Surname,
+                                      item.Book.Name,
+                                      item.BookCount,
+                                      item.TakenAt.ToString("dd.MM.yyyy"),
+                                      item.Deadline,
+                                      item.Price,
+                                      item.FinePrice,
+                                      item.IsOpen ? "Open" : "Closed",
+                                      item.BookId
+                                     );
+
+            }
+
+        }
+
+        private void BtnCancelReturn_Click(object sender, EventArgs e)
+        {
+            _selectedOrder = null;
+            PnlPaymentInfo.Hide();
+        }
+
+       
+    }
 }
