@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LibrarySystem.Models;
+using LibrarySystem.Data;
+
+
 
 
 namespace LibrarySystem.Forms
@@ -27,30 +30,35 @@ namespace LibrarySystem.Forms
 
         private void BtnSignIn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TxbEmail.Text) || string.IsNullOrEmpty(TxbPassword.Text))
+            if (string.IsNullOrEmpty(TxbEmail.Text))
             {
-                MessageBox.Show("Please enter Email and Password", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter email", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-
-            User user = _context.Users.FirstOrDefault(u => u.Email == TxbEmail.Text &&
-                                                           u.Password == TxbPassword.Text);
-
-            if (user != null && user.Status == true)
+            if (string.IsNullOrEmpty(TxbPassword.Text))
             {
-                Dashboard dashboard = new Dashboard();
-                this.Hide();
-                dashboard.Show();
+                MessageBox.Show("Please enter password", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
 
+           
+            User user = _context.Users.FirstOrDefault(u => u.Status && u.Email == TxbEmail.Text &&
+                                                          u.Password == TxbPassword.Text);
+            if (user != null)
+            {
+                
+                Dashboard dashboard = new Dashboard();
+                dashboard.Show();
+                this.Hide();
+                return;
             }
             MessageBox.Show("Wrong Email or Password", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
-
+        
     }
         
      
-    }
+}
 

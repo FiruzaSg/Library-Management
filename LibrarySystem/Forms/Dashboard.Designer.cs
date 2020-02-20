@@ -38,6 +38,7 @@
             this.BtnAllOrders = new System.Windows.Forms.Button();
             this.PnlNewOrder = new System.Windows.Forms.Panel();
             this.PnlOrderInfo = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.BtnCancelOrder = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.DgvBasket = new System.Windows.Forms.DataGridView();
@@ -84,6 +85,10 @@
             this.BtnLateReturn = new System.Windows.Forms.Button();
             this.BtnOrder = new System.Windows.Forms.Button();
             this.PnlAllOrders = new System.Windows.Forms.Panel();
+            this.GrpSearch = new System.Windows.Forms.GroupBox();
+            this.TxbOrderSearch = new System.Windows.Forms.TextBox();
+            this.BtnOrderSearch = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
             this.GrbReportRange = new System.Windows.Forms.GroupBox();
             this.BtnReportSearch = new System.Windows.Forms.Button();
             this.BtnExcel = new System.Windows.Forms.Button();
@@ -112,11 +117,6 @@
             this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnReturn = new System.Windows.Forms.Button();
             this.BtnNewOrder = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.GrpSearch = new System.Windows.Forms.GroupBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.BtnOrderSearch = new System.Windows.Forms.Button();
-            this.TxbOrderSearch = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.PnlNewOrder.SuspendLayout();
             this.PnlOrderInfo.SuspendLayout();
@@ -125,10 +125,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvBookSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCustomersSearch)).BeginInit();
             this.PnlAllOrders.SuspendLayout();
+            this.GrpSearch.SuspendLayout();
             this.GrbReportRange.SuspendLayout();
             this.PnlPaymentInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).BeginInit();
-            this.GrpSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -239,6 +239,16 @@
             this.PnlOrderInfo.Size = new System.Drawing.Size(622, 196);
             this.PnlOrderInfo.TabIndex = 25;
             this.PnlOrderInfo.Visible = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(12, 63);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(89, 13);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Selected book";
             // 
             // BtnCancelOrder
             // 
@@ -660,6 +670,44 @@
             this.PnlAllOrders.Size = new System.Drawing.Size(1323, 673);
             this.PnlAllOrders.TabIndex = 26;
             // 
+            // GrpSearch
+            // 
+            this.GrpSearch.Controls.Add(this.TxbOrderSearch);
+            this.GrpSearch.Controls.Add(this.BtnOrderSearch);
+            this.GrpSearch.Controls.Add(this.label14);
+            this.GrpSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GrpSearch.Location = new System.Drawing.Point(27, 0);
+            this.GrpSearch.Name = "GrpSearch";
+            this.GrpSearch.Size = new System.Drawing.Size(433, 67);
+            this.GrpSearch.TabIndex = 29;
+            this.GrpSearch.TabStop = false;
+            // 
+            // TxbOrderSearch
+            // 
+            this.TxbOrderSearch.Location = new System.Drawing.Point(88, 21);
+            this.TxbOrderSearch.Name = "TxbOrderSearch";
+            this.TxbOrderSearch.Size = new System.Drawing.Size(240, 20);
+            this.TxbOrderSearch.TabIndex = 8;
+            // 
+            // BtnOrderSearch
+            // 
+            this.BtnOrderSearch.Location = new System.Drawing.Point(344, 19);
+            this.BtnOrderSearch.Name = "BtnOrderSearch";
+            this.BtnOrderSearch.Size = new System.Drawing.Size(75, 23);
+            this.BtnOrderSearch.TabIndex = 9;
+            this.BtnOrderSearch.Text = "Search";
+            this.BtnOrderSearch.UseVisualStyleBackColor = true;
+            this.BtnOrderSearch.Click += new System.EventHandler(this.BtnOrderSearch_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(5, 23);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 13);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Customer name";
+            // 
             // GrbReportRange
             // 
             this.GrbReportRange.Controls.Add(this.BtnReportSearch);
@@ -921,54 +969,6 @@
             this.BtnNewOrder.UseVisualStyleBackColor = false;
             this.BtnNewOrder.Click += new System.EventHandler(this.BtnNewOrder_Click_2);
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(12, 63);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(89, 13);
-            this.label12.TabIndex = 29;
-            this.label12.Text = "Selected book";
-            // 
-            // GrpSearch
-            // 
-            this.GrpSearch.Controls.Add(this.TxbOrderSearch);
-            this.GrpSearch.Controls.Add(this.BtnOrderSearch);
-            this.GrpSearch.Controls.Add(this.label14);
-            this.GrpSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GrpSearch.Location = new System.Drawing.Point(27, 0);
-            this.GrpSearch.Name = "GrpSearch";
-            this.GrpSearch.Size = new System.Drawing.Size(433, 67);
-            this.GrpSearch.TabIndex = 29;
-            this.GrpSearch.TabStop = false;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(5, 23);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(80, 13);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "Customer name";
-            // 
-            // BtnOrderSearch
-            // 
-            this.BtnOrderSearch.Location = new System.Drawing.Point(344, 19);
-            this.BtnOrderSearch.Name = "BtnOrderSearch";
-            this.BtnOrderSearch.Size = new System.Drawing.Size(75, 23);
-            this.BtnOrderSearch.TabIndex = 9;
-            this.BtnOrderSearch.Text = "Search";
-            this.BtnOrderSearch.UseVisualStyleBackColor = true;
-            this.BtnOrderSearch.Click += new System.EventHandler(this.BtnOrderSearch_Click);
-            // 
-            // TxbOrderSearch
-            // 
-            this.TxbOrderSearch.Location = new System.Drawing.Point(88, 21);
-            this.TxbOrderSearch.Name = "TxbOrderSearch";
-            this.TxbOrderSearch.Size = new System.Drawing.Size(240, 20);
-            this.TxbOrderSearch.TabIndex = 8;
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -988,6 +988,7 @@
             this.Name = "Dashboard";
             this.Text = "Dashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Leave += new System.EventHandler(this.Dashboard_Leave);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.PnlNewOrder.ResumeLayout(false);
@@ -999,13 +1000,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvBookSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCustomersSearch)).EndInit();
             this.PnlAllOrders.ResumeLayout(false);
+            this.GrpSearch.ResumeLayout(false);
+            this.GrpSearch.PerformLayout();
             this.GrbReportRange.ResumeLayout(false);
             this.GrbReportRange.PerformLayout();
             this.PnlPaymentInfo.ResumeLayout(false);
             this.PnlPaymentInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAllOrders)).EndInit();
-            this.GrpSearch.ResumeLayout(false);
-            this.GrpSearch.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
