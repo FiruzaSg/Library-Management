@@ -422,21 +422,21 @@
             // 
             this.DtpNewDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DtpNewDeadline.Location = new System.Drawing.Point(305, 297);
-            this.DtpNewDeadline.MinDate = new System.DateTime(2020, 2, 17, 0, 0, 0, 0);
+            this.DtpNewDeadline.MinDate = new System.DateTime(2020, 2, 21, 1, 8, 25, 0);
             this.DtpNewDeadline.Name = "DtpNewDeadline";
             this.DtpNewDeadline.Size = new System.Drawing.Size(200, 20);
             this.DtpNewDeadline.TabIndex = 16;
+            this.DtpNewDeadline.Value = new System.DateTime(2020, 2, 21, 1, 8, 25, 0);
             // 
             // DtpNewTaken
             // 
             this.DtpNewTaken.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DtpNewTaken.Location = new System.Drawing.Point(32, 297);
-            this.DtpNewTaken.MaxDate = new System.DateTime(2020, 2, 17, 0, 0, 0, 0);
-            this.DtpNewTaken.MinDate = new System.DateTime(2020, 2, 17, 0, 0, 0, 0);
+            this.DtpNewTaken.MinDate = new System.DateTime(2020, 2, 21, 1, 8, 30, 0);
             this.DtpNewTaken.Name = "DtpNewTaken";
             this.DtpNewTaken.Size = new System.Drawing.Size(200, 20);
             this.DtpNewTaken.TabIndex = 15;
-            this.DtpNewTaken.Value = new System.DateTime(2020, 2, 17, 0, 0, 0, 0);
+            this.DtpNewTaken.Value = new System.DateTime(2020, 2, 21, 1, 8, 30, 0);
             // 
             // BtnBookSearch
             // 
@@ -988,7 +988,6 @@
             this.Name = "Dashboard";
             this.Text = "Dashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Leave += new System.EventHandler(this.Dashboard_Leave);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.PnlNewOrder.ResumeLayout(false);

@@ -672,6 +672,6 @@ namespace LibrarySystem.Forms
             PnlPaymentInfo.Hide();
         }
 
-        Application.Exit();
+     
     }
 }
